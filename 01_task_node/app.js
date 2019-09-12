@@ -10,6 +10,8 @@ let commits = null;
 let diff = null;
 let content = null;
 
+app.set('json spaces', 4);
+
 fs.readdir(dir_name, (err, fileData) => {
     if(err) {
         repos = { error: err.message };
@@ -58,25 +60,32 @@ app.get('/api/repos/:repositoryId/commits/:commitHash/diff', (req, res) => {
     res.send(diff);
 });
 
-app.get('/api/repos/:repositoryId(/tree/:commitHash/:path', (req, res) => {
+app.get('/api/repos/:repositoryId/tree/:commitHash?/:path?', (req, res) => {
     const repository_name = path.join(dir_name, req.params.repositoryId);
     const hash = req.params.commitHash;
-    const path = req.params.path;
+    const innerPath = req.params.path;
 
-    const endpoint = repository_name;
-    if(hash) endpoint = hash;
-    if(path) endpoint = path;
+    let endpoint = repository_name;
+    let branch = "master";
 
-    exec(`git cat-file -p ${endpoint}`, {cwd: repository_name}, (err, out) => {
+    if(innerPath) endpoint = path.join(repository_name, innerPath);
+    if(hash) branch = hash;
+
+    exec(`git checkout ${branch}`, {cwd: endpoint}, (err, out) => {
         if(err) {
-            diff = { error: err.message };
+            content = { git_error: err.message };
         }
-
-        diff = out;
        });
 
-    res.json(diff);
-});
+    fs.readdir(endpoint, (err, fileData) => {
+        if(err) {
+            content[error] = err.message;
+        }
 
+        content = { content: fileData };
+    });
+
+    res.json(content);
+});
 
 app.listen(3000);
