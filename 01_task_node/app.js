@@ -3,12 +3,13 @@ const express = require('express');
 const app = express();
 const fs = require(`fs`); 
 const path = require('path');
-const { exec } = require('child_process');
+const { exec, fork } = require('child_process');
 
-let repos = null;
-let commits = null;
-let diff = null;
-let content = null;
+let repos;
+let commits;
+let diff;
+let content;
+let fileData;
 
 app.set('json spaces', 4);
 
@@ -75,7 +76,7 @@ app.get('/api/repos/:repositoryId/tree/:commitHash?/:path?', (req, res) => {
         if(err) {
             content = { git_error: err.message };
         }
-       });
+    });
 
     fs.readdir(endpoint, (err, fileData) => {
         if(err) {
@@ -87,5 +88,35 @@ app.get('/api/repos/:repositoryId/tree/:commitHash?/:path?', (req, res) => {
 
     res.json(content);
 });
+
+
+app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile', (req, res) => {
+    const repository_name = path.join(dir_name, req.params.repositoryId);
+    const hash = req.params.commitHash;
+    const fileName = path.join(repository_name, req.params.pathToFile);
+
+    const child = fork(`${__dirname}/readBlob.js`, [ fileName ]);
+
+    exec(`git checkout ${hash}`, (err, out) => {
+        if(err) {
+            fileData = { git_error: err.message };
+        }
+    });
+
+    child.on('message', (data) => {
+        fileData = data;
+    })
+
+    res.end(fileData);
+});
+
+app.delete('/api/repos/:repositoryId', (req, res) => {
+    const repository_name = path.join(dir_name, req.params.repositoryId);
+
+
+});
+
+
+
 
 app.listen(3000);
