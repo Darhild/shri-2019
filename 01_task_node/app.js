@@ -3,25 +3,11 @@ const app = express();
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { exec, fork } = require('child_process');
+const { exec, execSync, fork } = require('child_process');
 const dirName = process.argv[2];
 const user_os = os.type();
 const { promisify } = require('util');
 const readdir = promisify(fs.readdir);
-
-const checkFile = async(req, res) => {
-    const repositoryName = req.params.repositoryId;
-    const repositoryPath = path.join(dirName, repositoryName);
-
-    await fs.access(repositoryPath, (err) => {
-        if (err) {
-            sendError404(res, "Repository", repositoryName);
-            return false;
-        }
-
-        return true;
-    })
-};
 
 app.use(express.json());
 app.set('json spaces', 4);
@@ -42,7 +28,11 @@ app.get('(/api/repos/:repositoryId/commits/:commitHash)(/diff)?', (req, res) => 
     const repositoryPath = path.join(dirName, repositoryName);
     const hash = req.params.commitHash;
 
-    if(checkFile(req, res)) {
+    fs.access(repositoryPath, (err) => {
+        if (err) {
+            sendError404(res, "Repository", repositoryName);
+            return;
+        }
 
         if(/diff$/.test(req.path)) {
             exec(`git diff ${hash} ${hash}^~1`, {cwd: repositoryPath}, (err, out) => {
@@ -56,50 +46,45 @@ app.get('(/api/repos/:repositoryId/commits/:commitHash)(/diff)?', (req, res) => 
 
         else {
             let paginatedCommits = "";
-            let numberOfCommits = 0;
 
             if(req.query.showFrom || req.query.showMax) {
+                exec(`git rev-list --count ${hash}`, {cwd: repositoryPath}, (err, out) => {
+                    if (err) {
+                        res.send(err.toString());
+                    }
 
-                numberOfCommits = async() => {
-                    await exec(`git rev-list --count ${hash}`, {cwd: repositoryPath}, (err, out) => {
-
-                        if (err) {
-                            res.send(err);
+                    else {
+                        if (req.query.showFrom) {
+                            if(req.query.showFrom < out) paginatedCommits += ` --skip=${req.query.showFrom}`
                         }
 
-                        return out;
-                    })
-                };
+                        if (req.query.showMax) {
+                            if(req.query.showMax > 0 && req.query.showMax <= out) {
+                                paginatedCommits += ` -n ${req.query.showMax}`
+                            }
+                        }
 
-                if(numberOfCommits && req.query.showFrom) {
-                    if(req.query.showFrom < numberOfCommits) paginatedCommits += ` --skip=${req.query.showFrom}`
-                }
+                        exec(`git log ${hash} --pretty=format:"%h %ad" ${paginatedCommits}`, {cwd: repositoryPath}, (err, out) => {
+                            if(err) {
+                                out = { error: err.message };
+                            }
 
-                if(numberOfCommits && req.query.showMax) {
-                    if(req.query.showMax > 0 && req.query.showMax <= numberOfCommits) {
-                        paginatedCommits += ` -n ${req.query.showMax}`
+                            const arr = out.split('\n');
+                            out = arr.map(commit => {
+                                let obj = {};
+                                let key = commit.slice(0, 7);
+                                let value = commit.slice(8);
+                                obj[key] = value;
+                                return obj;
+                            });
+
+                            res.json(out);
+                        });
                     }
-                }
-            }
-
-            exec(`git log ${hash} --pretty=format:"%h %ad" ${paginatedCommits}`, {cwd: repositoryPath}, (err, out) => {
-                if(err) {
-                    out = { error: err.message };
-                }
-
-                const arr = out.split('\n');
-                out = arr.map(commit => {
-                    let obj = {};
-                    let key = commit.slice(0, 7);
-                    let value = commit.slice(8);
-                    obj[key] = value;
-                    return obj;
                 });
-
-                res.json(out);
-            });
+            }
         }
-    }
+    })
 });
 
 app.get('(/api/repos/:repositoryId)(/tree/:commitHash)?(/:path)?', (req, res) => {
@@ -247,6 +232,7 @@ app.get('/api/repos/:repositoryId/count/:symbol', async(req, res) => {
 
     res.json(repos);
 });
+
 
 function sendError404(res, paramType, paramValue) {
     res.setHeader("Content-Type", "application/json");
