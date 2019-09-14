@@ -1,9 +1,9 @@
-const dir_name = process.argv[2];
 const express = require('express');
 const app = express();
 const fs = require(`fs`); 
 const path = require('path');
 const { exec, fork } = require('child_process');
+const dir_name = process.argv[2];
 
 let repos;
 let commits;
@@ -11,17 +11,21 @@ let diff;
 let content;
 let fileData;
 
+app.use(express.json());
 app.set('json spaces', 4);
 
-fs.readdir(dir_name, (err, fileData) => {
-    if(err) {
-        repos = { error: err.message };
-    }
+app.get('/api/repos', (req, res) => {
 
-    repos = { repos: fileData };
+    fs.readdir(dir_name, (err, fileData) => {
+        if(err) {
+            repos = { error: err.message };
+        }
+
+        repos = { repos: fileData };
+    });
+
+    res.json(repos);
 });
-
-app.get('/api/repos', (req, res) => res.json(repos));
 
 app.get('/api/repos/:repositoryId/commits/:commitHash', (req, res) => {
     const repository_name = path.join(dir_name, req.params.repositoryId);
@@ -113,10 +117,36 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile', (req, res) => {
 app.delete('/api/repos/:repositoryId', (req, res) => {
     const repository_name = path.join(dir_name, req.params.repositoryId);
 
+    exec(`RMDIR /s/q ${ repository_name }`, (err, out) => {
+        if(err) {
+            res.statusCode = 500;
+            res.setHeader("Content-Type", "application/json");
+            res.send({ "error": err.toString() });
+        }
 
+        res.send({ "message": `${ req.params.repositoryId } was successfully deleted from repos list!`})
+    })
 });
 
+/*
+app.get('/api/repos/:repositoryId/', (req, res) => {
+    const repository_name = path.join(dir_name, req.params.repositoryId);
 
+    res.send(repository_name);
+});*/
 
+app.post('/api/repos/:repositoryId', (req, res) => {
+    const repo = req.body.url;
+
+    exec(`git clone ${repo}.git`, {cwd: dir_name}, (err, out) => {
+        if(err) {
+            res.setHeader("Content-Type", "application/json");
+            res.statusCode = 500;
+            res.send({ error: err.toString() });
+        }
+
+        res.send({ message: `${req.params.repositoryId} was succesfully added to api repos list!` })
+    });
+});
 
 app.listen(3000);
