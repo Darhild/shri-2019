@@ -4,152 +4,224 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { exec, fork } = require('child_process');
-const dir_name = process.argv[2];
+const dirName = process.argv[2];
 const user_os = os.type();
+const { promisify } = require('util');
+const readdir = promisify(fs.readdir);
 
-console.log(user_os);
+const checkFile = async(req, res) => {
+    const repositoryName = req.params.repositoryId;
+    const repositoryPath = path.join(dirName, repositoryName);
 
-let repos;
-let commits;
-let diff;
-let content;
-let fileData;
+    await fs.access(repositoryPath, (err) => {
+        if (err) {
+            sendError404(res, "Repository", repositoryName);
+            return false;
+        }
+
+        return true;
+    })
+};
 
 app.use(express.json());
 app.set('json spaces', 4);
 
-app.get('/api/repos', (req, res) => {
-
-    fs.readdir(dir_name, (err, fileData) => {
-        if(err) {
-            repos = { error: err.message };
-        }
-
-        repos = { repos: fileData };
-    });
+app.get('/api/repos', async(req, res) => {
+    let repos;
+    try {
+        repos = await readdir(dirName);
+    } catch (err) {
+        repos = { error: err.message };
+    }
 
     res.json(repos);
 });
 
-app.get('/api/repos/:repositoryId/commits/:commitHash', (req, res) => {
-    const repository_name = path.join(dir_name, req.params.repositoryId);
+app.get('(/api/repos/:repositoryId/commits/:commitHash)(/diff)?', (req, res) => {
+    const repositoryName = req.params.repositoryId;
+    const repositoryPath = path.join(dirName, repositoryName);
     const hash = req.params.commitHash;
 
-    exec(`git log ${hash} --pretty=format:"%h %ad"`, {cwd: repository_name}, (err, out) => {
-        if(err) {
-            commits = { error: err.message };
+    if(checkFile(req, res)) {
+
+        if(/diff$/.test(req.path)) {
+            exec(`git diff ${hash} ${hash}^~1`, {cwd: repositoryPath}, (err, out) => {
+                if(err) {
+                    out = err.message;
+                }
+
+                res.send(out);
+            });
         }
 
-        const arr = out.split('\n');
-        commits = arr.map(commit => {
-            let obj = {};
-            let key = commit.slice(0, 7);
-            let value = commit.slice(8);
-            obj[key] = value;
+        else {
+            let paginatedCommits = "";
+            let numberOfCommits = 0;
 
-            return obj;
+            if(req.query.showFrom || req.query.showMax) {
+
+                numberOfCommits = async() => {
+                    await exec(`git rev-list --count ${hash}`, {cwd: repositoryPath}, (err, out) => {
+
+                        if (err) {
+                            res.send(err);
+                        }
+
+                        return out;
+                    })
+                };
+
+                if(numberOfCommits && req.query.showFrom) {
+                    if(req.query.showFrom < numberOfCommits) paginatedCommits += ` --skip=${req.query.showFrom}`
+                }
+
+                if(numberOfCommits && req.query.showMax) {
+                    if(req.query.showMax > 0 && req.query.showMax <= numberOfCommits) {
+                        paginatedCommits += ` -n ${req.query.showMax}`
+                    }
+                }
+            }
+
+            exec(`git log ${hash} --pretty=format:"%h %ad" ${paginatedCommits}`, {cwd: repositoryPath}, (err, out) => {
+                if(err) {
+                    out = { error: err.message };
+                }
+
+                const arr = out.split('\n');
+                out = arr.map(commit => {
+                    let obj = {};
+                    let key = commit.slice(0, 7);
+                    let value = commit.slice(8);
+                    obj[key] = value;
+                    return obj;
+                });
+
+                res.json(out);
+            });
+        }
+    }
+});
+
+app.get('(/api/repos/:repositoryId)(/tree/:commitHash)?(/:path)?', (req, res) => {
+    const repositoryName = req.params.repositoryId;
+    const repositoryPath = path.join(dirName, repositoryName);
+
+    fs.access(repositoryPath, (err) => {
+        if (err) {
+            sendError404(res, "Repository", repositoryName);
+            return;
+        }
+
+        const hash = req.params.commitHash;
+        const innerPath = req.params.path;
+
+        let endpoint = repositoryPath;
+        let branch = "master";
+
+        if(innerPath) endpoint = path.join(repositoryPath, innerPath);
+        if(hash) branch = hash;
+
+        exec(`git checkout ${branch}`, {cwd: endpoint}, async(err, out) => {
+            if(err) {
+                out = { git_error: err.message };
+            }
+
+            try {
+                out = await readdir(endpoint);
+            } catch (err) {
+                out = { error: err.message };
+            }
+
+            res.json(out);
         });
-       });
-
-    res.json(commits);
-});
-
-app.get('/api/repos/:repositoryId/commits/:commitHash/diff', (req, res) => {
-    const repository_name = path.join(dir_name, req.params.repositoryId);
-    const hash = req.params.commitHash;
-
-    exec(`git diff ${hash} ${hash}^~1`, {cwd: repository_name}, (err, out) => {
-        if(err) {
-            diff = { error: err.message };
-        }
-
-        diff = out;
-       });
-
-    res.send(diff);
-});
-
-app.get('/api/repos/:repositoryId/tree/:commitHash?/:path?', (req, res) => {
-    const repository_name = path.join(dir_name, req.params.repositoryId);
-    const hash = req.params.commitHash;
-    const innerPath = req.params.path;
-
-    let endpoint = repository_name;
-    let branch = "master";
-
-    if(innerPath) endpoint = path.join(repository_name, innerPath);
-    if(hash) branch = hash;
-
-    exec(`git checkout ${branch}`, {cwd: endpoint}, (err, out) => {
-        if(err) {
-            content = { git_error: err.message };
-        }
     });
-
-    fs.readdir(endpoint, (err, fileData) => {
-        if(err) {
-            content[error] = err.message;
-        }
-
-        content = { content: fileData };
-    });
-
-    res.json(content);
 });
-
 
 app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile', (req, res) => {
-    const repository_name = path.join(dir_name, req.params.repositoryId);
+    const repositoryName = req.params.repositoryId;
+    const fileName = req.params.pathToFile;
+    const repositoryPath = path.join(dirName, repositoryName);
     const hash = req.params.commitHash;
-    const fileName = path.join(repository_name, req.params.pathToFile);
+    let fileData;
 
-    const child = fork(`${__dirname}/readBlob.js`, [ fileName ]);
-
-    exec(`git checkout ${hash}`, (err, out) => {
-        if(err) {
-            fileData = { git_error: err.message };
+    fs.access(repositoryPath, (err) => {
+        if (err) {
+            sendError404(res, "Repository", repositoryName);
+            return;
         }
-    });
 
-    child.on('message', (data) => {
-        fileData = data;
+        exec(`git checkout ${hash}`, (err, out) => {
+            if(err) {
+                fileData = { git_error: err.message };
+            }
+        });
+
+        const filePath = path.join(repositoryPath, fileName);
+
+        fs.access(filePath, (err) => {
+            if (err) {
+                sendError404(res, "File", fileName);
+                return;
+            }
+
+            fs.readFile(filePath, (err, data) => {
+                if (err) {
+                    res.send(err);
+                }
+
+                res.end(data);
+            })
+/*
+         const child = async() => await fork(`${__dirname}/readBlob.js`, [ filePath ]);
+
+         res.end(child);
+
+
+    /*        const childProcess = spawn('node', [ fs.readFile, filePath ]);
+
+            childProcess.stdout.on('end', (data) => {
+               res.send(data);
+            });
+*/
+
+        })
     })
-
-    res.end(fileData);
 });
 
 app.delete('/api/repos/:repositoryId', (req, res) => {
-    const repository_name = path.join(dir_name, req.params.repositoryId);
-    let command = `rm -r ${ repository_name }`;
+    const repositoryName = req.params.repositoryId;
+    const fileName = req.params.pathToFile;
 
-    if(user_os === 'Windows_NT') command = `RMDIR /s/q ${ repository_name }`;
-
-    exec(command, (err, out) => {
-        if(err) {
-            res.statusCode = 500;
-            res.setHeader("Content-Type", "application/json");
-            res.send({ "error": err.toString() });
+    fs.access(repositoryPath, (err) => {
+        if (err) {
+            sendError404(res, "Repository", repositoryName);
+            return;
         }
 
-        res.send({ "message": `${ req.params.repositoryId } was successfully deleted from repos list!`})
+        let command = `rm -r ${ repository_name }`;
+
+        if(user_os === 'Windows_NT') command = `RMDIR /s/q ${ repository_name }`;
+
+        exec(command, (err, out) => {
+            if(err) {
+                res.statusCode = 500;
+                res.setHeader("Content-Type", "application/json");
+                res.send({ "error": err });
+            }
+
+            res.send({ "message": `${ req.params.repositoryId } was successfully deleted from repos list!`})
+        })
     })
 });
-
-/*
-app.get('/api/repos/:repositoryId/', (req, res) => {
-    const repository_name = path.join(dir_name, req.params.repositoryId);
-
-    res.send(repository_name);
-});*/
 
 app.post('/api/repos/:repositoryId', (req, res) => {
     const repo = req.body.url;
 
-    exec(`git clone ${repo} ${ req.params.repositoryId }`, {cwd: dir_name}, (err, out) => {
+    exec(`git clone ${repo} ${ req.params.repositoryId }`, {cwd: dirName}, (err, out) => {
         if(err) {
             res.setHeader("Content-Type", "application/json");
             res.statusCode = 500;
-            res.send({ error: err.toString() });
+            res.send({ error: err });
         }
 
         res.send({ message: `${ req.params.repositoryId } was succesfully added to api repos list!` })
@@ -157,3 +229,27 @@ app.post('/api/repos/:repositoryId', (req, res) => {
 });
 
 app.listen(3000);
+
+/*
+function checkAccess(req, res) {
+    const repositoryName = req.params.repositoryId;
+    const repositoryPath = path.join(dirName, repositoryName);
+
+}*/
+
+app.get('/api/repos/:repositoryId/count/:symbol', async(req, res) => {
+    let repos;
+    try {
+        repos = await readdir(dirName);
+    } catch (err) {
+        repos = { error: err.message };
+    }
+
+    res.json(repos);
+});
+
+function sendError404(res, paramType, paramValue) {
+    res.setHeader("Content-Type", "application/json");
+    res.statusCode = 404;
+    res.send({ error: `${paramType} ${paramValue} does not exist.` });
+}
