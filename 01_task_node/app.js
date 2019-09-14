@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
-const fs = require(`fs`); 
+const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { exec, fork } = require('child_process');
 const dir_name = process.argv[2];
+const user_os = os.type();
+
+console.log(user_os);
 
 let repos;
 let commits;
@@ -116,8 +120,11 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile', (req, res) => {
 
 app.delete('/api/repos/:repositoryId', (req, res) => {
     const repository_name = path.join(dir_name, req.params.repositoryId);
+    let command = `rm -r ${ repository_name }`;
 
-    exec(`RMDIR /s/q ${ repository_name }`, (err, out) => {
+    if(user_os === 'Windows_NT') command = `RMDIR /s/q ${ repository_name }`;
+
+    exec(command, (err, out) => {
         if(err) {
             res.statusCode = 500;
             res.setHeader("Content-Type", "application/json");
@@ -138,14 +145,14 @@ app.get('/api/repos/:repositoryId/', (req, res) => {
 app.post('/api/repos/:repositoryId', (req, res) => {
     const repo = req.body.url;
 
-    exec(`git clone ${repo}.git`, {cwd: dir_name}, (err, out) => {
+    exec(`git clone ${repo} ${ req.params.repositoryId }`, {cwd: dir_name}, (err, out) => {
         if(err) {
             res.setHeader("Content-Type", "application/json");
             res.statusCode = 500;
             res.send({ error: err.toString() });
         }
 
-        res.send({ message: `${req.params.repositoryId} was succesfully added to api repos list!` })
+        res.send({ message: `${ req.params.repositoryId } was succesfully added to api repos list!` })
     });
 });
 
