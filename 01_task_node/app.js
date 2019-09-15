@@ -3,7 +3,7 @@ const app = express();
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { exec, execSync, fork } = require('child_process');
+const { exec, fork } = require('child_process');
 const dirName = process.argv[2];
 const user_os = os.type();
 const { promisify } = require('util');
@@ -172,6 +172,23 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile', (req, res) => {
         })
     })
 });
+
+app.get('/api/repos/count/:repositoryId', (req, res) => {
+    console.log(req.params.repositoryId);
+    const repositoryName = req.params.repositoryId;
+    const repositoryPath = path.join(dirName, repositoryName);
+
+    fs.access(repositoryPath, (err) => {
+        if (err) {
+            sendError404(res, "Repository", repositoryName);
+            return;
+        }
+
+        const childProcess = fork(`${__dirname}/countSymbols.js}`, [ repositoryPath ]);
+        childProcess.on('end', (data) => res.send(data));
+    })
+});
+
 
 app.delete('/api/repos/:repositoryId', (req, res) => {
     const repositoryName = req.params.repositoryId;
