@@ -1,14 +1,14 @@
 const express = require('express');
-const app = express();
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { exec, execSync, fork } = require('child_process');
-const dirName = process.argv[2];
-const user_os = os.type();
 const { promisify } = require('util');
 const readdir = promisify(fs.readdir);
+const dirName = process.argv[2];
+const user_os = os.type();
 
+const app = express();
 app.use(express.json());
 app.set('json spaces', 4);
 
@@ -36,7 +36,7 @@ app.get('(/api/repos/:repositoryId/commits/:commitHash)(/diff)?', (req, res) => 
 
         if(/diff$/.test(req.path)) {
             exec(`git diff ${hash} ${hash}^~1`, {cwd: repositoryPath}, (err, out) => {
-                if(err) {
+                if (err) {
                     out = err.message;
                 }
 
@@ -47,7 +47,7 @@ app.get('(/api/repos/:repositoryId/commits/:commitHash)(/diff)?', (req, res) => 
         else {
             let paginatedCommits = "";
 
-            if(req.query.showFrom || req.query.showMax) {
+            if (req.query.showFrom || req.query.showMax) {
                 const numberOfCommits = execSync(`git rev-list --count ${hash}`).toString();
                 console.log(numberOfCommits);
             
@@ -56,14 +56,14 @@ app.get('(/api/repos/:repositoryId/commits/:commitHash)(/diff)?', (req, res) => 
                 }
     
                 if (req.query.showMax) {
-                    if(req.query.showMax > 0 && req.query.showMax <= numberOfCommits) {
+                    if (req.query.showMax > 0 && req.query.showMax <= numberOfCommits) {
                         paginatedCommits += ` -n ${req.query.showMax}`
                     }
                 }
             }
 
             exec(`git log ${hash} --pretty=format:"%h %ad" ${paginatedCommits}`, {cwd: repositoryPath}, (err, out) => {
-                if(err) {
+                if (err) {
                     out = { error: err.message };
                 }
 
@@ -98,11 +98,11 @@ app.get('(/api/repos/:repositoryId)(/tree/:commitHash)?(/:path)?', (req, res) =>
         let endpoint = repositoryPath;
         let branch = "master";
 
-        if(innerPath) endpoint = path.join(repositoryPath, innerPath);
-        if(hash) branch = hash;
+        if (innerPath) endpoint = path.join(repositoryPath, innerPath);
+        if (hash) branch = hash;
 
-        exec(`git checkout ${branch}`, {cwd: endpoint}, async(err, out) => {
-            if(err) {
+        exec(`git checkout ${branch}`, { cwd: endpoint }, async(err, out) => {
+            if (err) {
                 out = { git_error: err.message };
             }
 
@@ -131,7 +131,7 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile', (req, res) => {
         }
 
         exec(`git checkout ${hash}`, (err, out) => {
-            if(err) {
+            if (err) {
                 fileData = { git_error: err.message };
             }
         });
@@ -151,19 +151,6 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile', (req, res) => {
 
                 res.end(data);
             })
-/*
-         const child = async() => await fork(`${__dirname}/readBlob.js`, [ filePath ]);
-
-         res.end(child);
-
-
-    /*        const childProcess = spawn('node', [ fs.readFile, filePath ]);
-
-            childProcess.stdout.on('end', (data) => {
-               res.send(data);
-            });
-*/
-
         })
     })
 });
@@ -179,8 +166,16 @@ app.get('/api/repos/:repositoryId/count/:commitHash', (req, res) => {
             return;
         }
 
+        if (hash) {
+            exec(`git checkout ${hash}`, (err, out) => {
+                if (err) {
+                    res.send({ git_error: err });
+                }
+            });
+        }
+
         const childProcess = fork(`${__dirname}/countSymbols.js`, [ repositoryPath ]);
-        childProcess.on('end', (data) => res.send(data));
+        childProcess.on('message', (data) => res.send(data));
     })
 });
 
@@ -196,16 +191,16 @@ app.delete('/api/repos/:repositoryId', (req, res) => {
 
         let command = `rm -r ${ repository_name }`;
 
-        if(user_os === 'Windows_NT') command = `RMDIR /s/q ${ repository_name }`;
+        if (user_os === 'Windows_NT') command = `RMDIR /s/q ${ repository_name }`;
 
         exec(command, (err, out) => {
-            if(err) {
+            if (err) {
                 res.statusCode = 500;
                 res.setHeader("Content-Type", "application/json");
                 res.send({ "error": err });
             }
 
-            res.send({ "message": `${ req.params.repositoryId } was successfully deleted from repos list!`})
+            res.send({ "message": `${ req.params.repositoryId } was successfully deleted from repos list!` })
         })
     })
 });
@@ -213,8 +208,8 @@ app.delete('/api/repos/:repositoryId', (req, res) => {
 app.post('/api/repos/:repositoryId', (req, res) => {
     const repo = req.body.url;
 
-    exec(`git clone ${repo} ${ req.params.repositoryId }`, {cwd: dirName}, (err, out) => {
-        if(err) {
+    exec(`git clone ${repo} ${ req.params.repositoryId }`, { cwd: dirName }, (err, out) => {
+        if (err) {
             res.setHeader("Content-Type", "application/json");
             res.statusCode = 500;
             res.send({ error: err });
@@ -224,15 +219,7 @@ app.post('/api/repos/:repositoryId', (req, res) => {
     });
 });
 
-/*
-function checkAccess(req, res) {
-    const repositoryName = req.params.repositoryId;
-    const repositoryPath = path.join(dirName, repositoryName);
-
-}*/
-
 app.listen(3000);
-
 
 function sendError404(res, paramType, paramValue) {
     res.setHeader("Content-Type", "application/json");
