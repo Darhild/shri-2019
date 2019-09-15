@@ -3,7 +3,7 @@ const app = express();
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { exec, fork } = require('child_process');
+const { exec, execSync, fork } = require('child_process');
 const dirName = process.argv[2];
 const user_os = os.type();
 const { promisify } = require('util');
@@ -48,41 +48,36 @@ app.get('(/api/repos/:repositoryId/commits/:commitHash)(/diff)?', (req, res) => 
             let paginatedCommits = "";
 
             if(req.query.showFrom || req.query.showMax) {
-                exec(`git rev-list --count ${hash}`, {cwd: repositoryPath}, (err, out) => {
-                    if (err) {
-                        res.send(err.toString());
+                const numberOfCommits = execSync(`git rev-list --count ${hash}`).toString();
+                console.log(numberOfCommits);
+            
+                if (req.query.showFrom) {
+                    if(req.query.showFrom < numberOfCommits) paginatedCommits += ` --skip=${req.query.showFrom}`
+                }
+    
+                if (req.query.showMax) {
+                    if(req.query.showMax > 0 && req.query.showMax <= numberOfCommits) {
+                        paginatedCommits += ` -n ${req.query.showMax}`
                     }
-
-                    else {
-                        if (req.query.showFrom) {
-                            if(req.query.showFrom < out) paginatedCommits += ` --skip=${req.query.showFrom}`
-                        }
-
-                        if (req.query.showMax) {
-                            if(req.query.showMax > 0 && req.query.showMax <= out) {
-                                paginatedCommits += ` -n ${req.query.showMax}`
-                            }
-                        }
-
-                        exec(`git log ${hash} --pretty=format:"%h %ad" ${paginatedCommits}`, {cwd: repositoryPath}, (err, out) => {
-                            if(err) {
-                                out = { error: err.message };
-                            }
-
-                            const arr = out.split('\n');
-                            out = arr.map(commit => {
-                                let obj = {};
-                                let key = commit.slice(0, 7);
-                                let value = commit.slice(8);
-                                obj[key] = value;
-                                return obj;
-                            });
-
-                            res.json(out);
-                        });
-                    }
-                });
+                }
             }
+
+            exec(`git log ${hash} --pretty=format:"%h %ad" ${paginatedCommits}`, {cwd: repositoryPath}, (err, out) => {
+                if(err) {
+                    out = { error: err.message };
+                }
+
+                const arr = out.split('\n');
+                out = arr.map(commit => {
+                    let obj = {};
+                    let key = commit.slice(0, 7);
+                    let value = commit.slice(8);
+                    obj[key] = value;
+                    return obj;
+                });
+
+                res.json(out);
+            });
         }
     })
 });
@@ -173,10 +168,10 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile', (req, res) => {
     })
 });
 
-app.get('/api/repos/count/:repositoryId', (req, res) => {
-    console.log(req.params.repositoryId);
+app.get('/api/repos/:repositoryId/count/:commitHash', (req, res) => {
     const repositoryName = req.params.repositoryId;
     const repositoryPath = path.join(dirName, repositoryName);
+    const hash = req.params.commitHash;
 
     fs.access(repositoryPath, (err) => {
         if (err) {
@@ -184,11 +179,10 @@ app.get('/api/repos/count/:repositoryId', (req, res) => {
             return;
         }
 
-        const childProcess = fork(`${__dirname}/countSymbols.js}`, [ repositoryPath ]);
+        const childProcess = fork(`${__dirname}/countSymbols.js`, [ repositoryPath ]);
         childProcess.on('end', (data) => res.send(data));
     })
 });
-
 
 app.delete('/api/repos/:repositoryId', (req, res) => {
     const repositoryName = req.params.repositoryId;
@@ -230,8 +224,6 @@ app.post('/api/repos/:repositoryId', (req, res) => {
     });
 });
 
-app.listen(3000);
-
 /*
 function checkAccess(req, res) {
     const repositoryName = req.params.repositoryId;
@@ -239,16 +231,7 @@ function checkAccess(req, res) {
 
 }*/
 
-app.get('/api/repos/:repositoryId/count/:symbol', async(req, res) => {
-    let repos;
-    try {
-        repos = await readdir(dirName);
-    } catch (err) {
-        repos = { error: err.message };
-    }
-
-    res.json(repos);
-});
+app.listen(3000);
 
 
 function sendError404(res, paramType, paramValue) {
