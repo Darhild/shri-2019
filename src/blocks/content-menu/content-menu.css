@@ -1,0 +1,57 @@
+@import "./../../mixins.css";
+
+.content-menu {
+    position: sticky;
+    top: 61px;
+    display: flex;
+    margin-right: 16px;
+    margin-left: 16px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    font-size: var(--text-size-m);
+    background-color: #fff;
+    border-bottom: 1px solid var(--color-main-border);
+    z-index: 100;
+/*
+    &:after {
+        position: absolute;
+        bottom: -17px;
+        left: 0;
+        content: "";
+        display: block;
+        width: 100%;
+        height: 16px;
+        background-color: #fff;
+    }
+*/
+
+    &__item {
+        margin-right: 32px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--color-inactive);
+        cursor: pointer;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &_state_active {
+            color: var(--color-text-primary);            
+            @mixin menuItemBorder 100%, 3px, 0, -9px;
+        }
+    }
+}
+
+@media(min-width: $desktop-width) {
+    .content-menu {
+        margin-right: 32px;
+        margin-left: 32px;
+    }
+/*
+    &:after {
+        bottom: -13px;
+        height: 12px;
+    }
+*/
+}

@@ -1,0 +1,116 @@
+.content-table {
+    width: 100%;
+    line-height: var(--line-height-l);    
+
+    &__row {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 12px 30px 0 0;
+        border-bottom: 1px solid var(--color-light-border);        
+    }
+
+    &__row:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        display: block;
+        width: 10px;
+        height: 10px;            
+        border-top: 2px solid var(--color-light-border);
+        border-left: 2px solid var(--color-light-border);
+        transform: translateY(-50%) rotate(135deg);       
+    }    
+
+    &__head {
+        display: none;
+        color: var(--color-faded);
+    }
+
+    &__col {
+        margin-bottom: 10px;        
+        padding: 0;
+    }
+
+    &__col_name {
+        width: 100%;
+        order: 1;
+    }
+
+    &__col_message {
+        width: 100%;
+        order: 2;
+    }
+
+    &__col_commit {
+        margin-right: 8px;
+        order: 3;
+    }
+
+    &__col_committer {
+        order: 4;
+
+        &:before {
+            content: "by\00a0"
+        }
+
+        &:after {
+            content: ",\00a0"
+        }
+    }    
+
+    &__col_last {
+        order: 100;
+        text-align: right;
+    }
+
+}
+
+@media screen and (min-width: $desktop-width) {
+    .content-table {
+        display: table;
+
+        &__head {
+            display: table-row;
+            color: var(--color-faded);
+        }
+
+        &__row {
+            display: table-row;
+            padding: 0;
+        }
+
+        &__row:after {
+            display: none;     
+        }    
+    
+
+        &__col {
+            display: table-cell;
+            margin-bottom: 0;
+            padding: 16px 0 8px;
+            border-bottom: 1px solid var(--color-light-border);
+        }
+
+        &__col_name {
+            width: auto;
+        }
+
+        &__col_message {
+            width: auto;
+        }
+
+        &__col_committer {
+    
+            &:before {
+                display: none
+            }
+    
+            &:after {
+                display: none
+            }
+        }   
+    }
+
+}

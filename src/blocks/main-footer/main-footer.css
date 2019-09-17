@@ -1,0 +1,20 @@
+.main-footer {
+    display: none;
+}
+
+@media(min-width: $desktop-width) {
+    .main-footer {
+        display: flex;
+        padding: 18px 20px 14px; 
+        color: var(--color-inactive);
+
+        &__info {
+            display: flex;
+            margin-left: auto;
+        }
+
+        &__version {
+            margin-right: 32px;
+        }
+    }
+}

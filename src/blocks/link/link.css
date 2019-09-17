@@ -1,5 +1,19 @@
 .link {
+    cursor: pointer;
+
     &_state_active {
         font-weight: bold;
     }
+
+    &_color_accent {
+        color: var(--color-accent);
+    }
+
+    &_user {
+        display: inline-block;
+    }
+
+    &_user:first-letter {
+        color: var(--color-primary);
+    } 
 }

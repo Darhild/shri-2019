@@ -9,6 +9,13 @@ body
         include main-header.pug
         .main__inner-content
             include breadcrumbs.pug
-            include main-title.pug
-            include file-menu.pug
+            include main-title.pug   
+
+        block content-menu       
+             
+        .main__inner-content
+            block content
+
+        block footer
+        
 

@@ -1,0 +1,9 @@
+@import "./../../mixins.css";
+
+.dropdown {
+    display: inline-block;
+    color: var(--color-inactive);
+    cursor: pointer;
+
+    @mixin menuItemAfter;
+}

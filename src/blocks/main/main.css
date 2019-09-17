@@ -3,9 +3,13 @@ body {
     padding: 0;
 }
 
-.main {   
+.main {
     --color-primary: #FF4F49;
     --color-accent: #1774E9;
+    --color-inactive: #7F8285;
+    --color-faded: #B8BEC3;
+
+    --color-text-primary: #000000;
 
     --color-main-border: #979797;
     --color-light-border: #F2F2F2;
@@ -15,12 +19,12 @@ body {
     --text-size-s: 14px;
     --text-size-m: 16px;
     --text-size-l: 18px;
+    --text-size-xl: 20px;
 
     min-width: $mobile-width;
-    height: 2000px;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;   
+    box-sizing: border-box;
 
     &__inner-content {
         padding-right: 16px;

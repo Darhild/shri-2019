@@ -7,5 +7,5 @@
 
         @mixin menuItemAfter;
         @mixin menuItemBorder 100%, 3px, 0, -21px;
-    }    
+    }
 }
