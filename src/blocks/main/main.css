@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.main {   
+    --color-primary: #FF4F49;
+    --color-accent: #1774E9;
+
+    --color-main-border: #979797;
+    --color-light-border: #F2F2F2;
+
+    --line-height-l: 20px;
+
+    --text-size-s: 14px;
+    --text-size-m: 16px;
+    --text-size-l: 18px;
+
+    min-width: $mobile-width;
+    height: 2000px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   
+
+    &__inner-content {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+@media screen and (min-width: $desktop-width) {
+    .main {
+        &__inner-content {
+            padding-right: 32px;
+            padding-left: 32px;
+        }
+    }
+}

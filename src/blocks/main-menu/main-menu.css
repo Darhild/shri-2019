@@ -1,0 +1,11 @@
+@import "./../../mixins.css";
+
+.main-menu {
+    &__item {
+        font-weight: bold;
+        cursor: pointer;
+
+        @mixin menuItemAfter;
+        @mixin menuItemBorder 100%, 3px, 0, -21px;
+    }    
+}

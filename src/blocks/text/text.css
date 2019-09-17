@@ -1,0 +1,13 @@
+.text {
+    &_color_accent {
+        color: var(--color-accent)
+    }
+
+    &_letter_accent {
+        display: inline-block;
+    }
+
+    &_letter_accent:first-letter {
+        color: var(--color-primary)
+    }
+}

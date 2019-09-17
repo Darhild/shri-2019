@@ -1,0 +1,5 @@
+.link {
+    &_state_active {
+        font-weight: bold;
+    }
+}

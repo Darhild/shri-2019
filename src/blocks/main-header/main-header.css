@@ -1,0 +1,16 @@
+.main-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 20px 16px ;
+    font-family: arial, serif;
+    background-color: #fff;
+    border-bottom: 1px solid var(--color-main-border);
+}
+
+@media(min-width: $desktop-width) {
+    .main-header {
+        padding: 20px 32px; 
+    }
+}
