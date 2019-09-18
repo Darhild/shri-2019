@@ -1,6 +1,44 @@
 .commit-sequence {
+    display: table;
+    width: 100%;
     font-size: var(--text-size-s);
     line-height: var(--line-height-l);
+
+    &__commit {
+        display: table-row;        
+    }
+
+    &__field {
+        display: table-cell;
+        padding-bottom: 14px;
+        vertical-align: top;
+    }
+
+    &__icon {
+        position: relative;
+        padding-right: 12px;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            bottom: 0;
+            left: 20px;
+            display: block;
+            width: 2px;
+            height: 100%;
+            background-color: var(--color-faded);
+        }
+
+
+        &:last-child:before {
+            display: none;
+        }
+    }    
+
+    &__commit:last-child .commit-sequence__icon:before {
+        display: none;
+    }    
 
     &__committer {
         &:before {
@@ -15,4 +53,28 @@
     &__message {
         font-weight: bold;
     }
+
+    &__hash {
+        display: none;
+    }
+
+    &__edit-code {
+        text-align: right;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: $desktop-width) {
+
+    .commit-sequence {
+        &__hash {
+            display: table-cell;
+        }
+
+        &__field {
+            vertical-align: middle;
+        }
+
+    }
+
 }

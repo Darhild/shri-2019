@@ -1,22 +1,65 @@
 .history      
-    .history_day Today
-        .content-table.commit-sequence
-            .content-table__row.commit-sequence__commit
-                .content-table__col.commit-sequence__icon
-                    <svg class="icon icon_commit">
-                        <use xlink:href="../images/icons-sprite.svg#commit"></use>
-                    </svg>
-                .content-table__col
-                    .commit-sequence__details
+    .history__day 
+        .history__title Today        
+        .commit-sequence
+            - for (var x = 0; x < 3; x++)
+                .commit-sequence__commit
+                    .commit-sequence__field.commit-sequence__icon
+                        <svg class="icon icon_commit">
+                            <use xlink:href="../images/icons-sprite.svg#commit"></use>
+                        </svg>
+                    .commit-sequence__field.commit-sequence__details
                         .commit-sequence__message Support new distbuild protocol
                         .commit-sequence__desc Не очень качественно написаны некоторые функции. Предлагаю исправить это недоразумение.
                         .commit-sequence__info
                             span.link.link_color_accent s324e8 
                             span.link.link_user.commit-sequence__committer annaveronika
                             span.commit-sequence__time 4 s ago
-                .content-table__col.commit-sequence__hash
-                    .link.link_color_accent s324e8
-                .content-table__col.content-table__col_last.commit-sequence__edit-code
-                    <svg class="icon icon_edit-code">
-                        <use xlink:href="../images/icons-sprite.svg#edit-code"></use>
-                    </svg>
+                    .commit-sequence__field.commit-sequence__hash
+                        .link.link_color_accent s324e8
+                    .commit-sequence__field.commit-sequence__edit-code
+                        <svg class="icon icon_edit-code">
+                            <use xlink:href="../images/icons-sprite.svg#edit-code"></use>
+                        </svg>
+        .history__title Yesterday
+        .commit-sequence
+            - for (var x = 0; x < 3; x++)
+                .commit-sequence__commit
+                    .commit-sequence__field.commit-sequence__icon
+                        <svg class="icon icon_commit">
+                            <use xlink:href="../images/icons-sprite.svg#commit"></use>
+                        </svg>
+                    .commit-sequence__field.commit-sequence__details
+                        .commit-sequence__message Support new distbuild protocol
+                        .commit-sequence__desc Не очень качественно написаны некоторые функции. Предлагаю исправить это недоразумение.
+                        .commit-sequence__info
+                            span.link.link_color_accent s324e8 
+                            span.link.link_user.commit-sequence__committer annaveronika
+                            span.commit-sequence__time 4 s ago
+                    .commit-sequence__field.commit-sequence__hash
+                        .link.link_color_accent s324e8
+                    .commit-sequence__field.commit-sequence__edit-code
+                        <svg class="icon icon_edit-code">
+                            <use xlink:href="../images/icons-sprite.svg#edit-code"></use>
+                        </svg>
+        .history__title Sept 18
+        .commit-sequence
+            - for (var x = 0; x < 3; x++)
+                .commit-sequence__commit
+                    .commit-sequence__field.commit-sequence__icon
+                        <svg class="icon icon_commit">
+                            <use xlink:href="../images/icons-sprite.svg#commit"></use>
+                        </svg>
+                    .commit-sequence__field.commit-sequence__details
+                        .commit-sequence__message Support new distbuild protocol
+                        .commit-sequence__desc Не очень качественно написаны некоторые функции. Предлагаю исправить это недоразумение.
+                        .commit-sequence__info
+                            span.link.link_color_accent s324e8 
+                            span.link.link_user.commit-sequence__committer annaveronika
+                            span.commit-sequence__time 4 s ago
+                    .commit-sequence__field.commit-sequence__hash
+                        .link.link_color_accent s324e8
+                    .commit-sequence__field.commit-sequence__edit-code
+                        <svg class="icon icon_edit-code">
+                            <use xlink:href="../images/icons-sprite.svg#edit-code"></use>
+                        </svg>

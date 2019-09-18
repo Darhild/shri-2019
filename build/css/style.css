@@ -1,6 +1,3 @@
-.commit-hash {
-    cursor: pointer;
-}
 .breadcrumbs {
     padding: 12px 0 10px;
     font-family: arial, serif;
@@ -9,9 +6,46 @@
 }
 
 .commit-sequence {
+    display: table;
+    width: 100%;
     font-size: var(--text-size-s);
     line-height: var(--line-height-l);
 }
+
+    .commit-sequence__commit {
+        display: table-row;        
+    }
+
+    .commit-sequence__field {
+        display: table-cell;
+        padding-bottom: 14px;
+        vertical-align: top;
+    }
+
+    .commit-sequence__icon {
+        position: relative;
+        padding-right: 12px;
+    }
+
+    .commit-sequence__icon:before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            bottom: 0;
+            left: 20px;
+            display: block;
+            width: 2px;
+            height: 100%;
+            background-color: var(--color-faded);
+        }
+
+    .commit-sequence__icon:last-child:before {
+            display: none;
+        }
+
+    .commit-sequence__commit:last-child .commit-sequence__icon:before {
+        display: none;
+    }
 
     .commit-sequence__committer:before {
             content: "by\00a0"
@@ -24,6 +58,29 @@
     .commit-sequence__message {
         font-weight: bold;
     }
+
+    .commit-sequence__hash {
+        display: none;
+    }
+
+    .commit-sequence__edit-code {
+        text-align: right;
+        cursor: pointer;
+    }
+
+@media screen and (min-width: 1440px) {
+        .commit-sequence__hash {
+            display: table-cell;
+        }
+
+        .commit-sequence__field {
+            vertical-align: middle;
+        }
+
+}
+.commit-hash {
+    cursor: pointer;
+}
 .content-menu {
     position: -webkit-sticky;
     position: sticky;
@@ -97,19 +154,74 @@
 
 }    
 
-    .content-table__row {        
-        display: -webkit-box;        
-        display: -ms-flexbox;        
+    .content-table__row {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         -ms-flex-wrap: wrap;
-            flex-wrap: wrap;                     
-        width: 100%;
+            flex-wrap: wrap;
+        padding: 12px 30px 0 0;
+        border-bottom: 1px solid var(--color-light-border);        
+    }    
+
+    .content-table__row:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        display: block;
+        width: 10px;
+        height: 10px;            
+        border-top: 2px solid var(--color-light-border);
+        border-left: 2px solid var(--color-light-border);
+        -webkit-transform: translateY(-50%) rotate(135deg);
+                transform: translateY(-50%) rotate(135deg);       
     }    
 
     .content-table__head {
         display: none;
         color: var(--color-faded);
     }    
+
+    .content-table__col {
+        margin-bottom: 10px;        
+    }    
+
+    .content-table__col_name {
+        width: 100%;
+        -webkit-box-ordinal-group: 2;
+            -ms-flex-order: 1;
+                order: 1;
+    }    
+
+    .content-table__col_message {
+        width: 100%;
+        -webkit-box-ordinal-group: 3;
+            -ms-flex-order: 2;
+                order: 2;
+    }    
+
+    .content-table__col_commit {
+        margin-right: 8px;
+        -webkit-box-ordinal-group: 4;
+            -ms-flex-order: 3;
+                order: 3;
+    }    
+
+    .content-table__col_committer {
+        -webkit-box-ordinal-group: 5;
+            -ms-flex-order: 4;
+                order: 4;
+    }    
+
+    .content-table__col_committer:before {
+            content: "by\00a0"
+        }    
+
+    .content-table__col_committer:after {
+            content: ",\00a0"
+        }    
 
     .content-table__col_last {
         -webkit-box-ordinal-group: 101;
@@ -120,8 +232,7 @@
 
 @media screen and (min-width: 1440px) {
     .content-table {
-        display: table;
-
+        display: table;   
     }
 
         .content-table__head {
@@ -130,16 +241,38 @@
         }
 
         .content-table__row {
-            display: table-row;            
+            display: table-row;
+            padding: 0;
         }
 
         .content-table__row:after {
             display: none;     
-        }        
+        }    
+    
 
         .content-table__col {
-            display: table-cell;                      
+            display: table-cell;
+            margin-bottom: 0;
+            padding: 16px 0 8px;
+            border-bottom: 1px solid var(--color-light-border);
+            vertical-align: middle;
         }
+
+        .content-table__col_name {
+            width: auto;
+        }
+
+        .content-table__col_message {
+            width: auto;
+        }
+    
+            .content-table__col_committer:before {
+                display: none
+            }
+    
+            .content-table__col_committer:after {
+                display: none
+            }
 
 }
 .dropdown {
@@ -168,7 +301,6 @@
         -webkit-transform: rotate(45deg);
                 transform: rotate(45deg)
     }
-
 .files-table__item {
         position: relative;
         padding: 12px 30px 0 0;
@@ -248,6 +380,24 @@
                 display: none
             }
 }
+.history__day {
+        margin-bottom: 14px;
+    }
+    .history__title {
+        padding: 18px 0 16px;
+        font-size: var(--text-size-m);
+        font-weight: bold;
+        color: var(--color-inactive);
+    }
+.icon-plus {
+    font-weight: bold;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
 .icon {
     margin-right: 8px;
 } 
@@ -263,23 +413,17 @@
     } 
 
     .icon_commit {
+        position: relative;
         width: 40px;
         height: 40px;
+        margin-right: 0;
+        z-index: 10;
     } 
 
     .icon_edit-code {
         width: 17px;
         height: 15px;
     }
-.icon-plus {
-    font-weight: bold;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
 .link {
     cursor: pointer; 
 }
