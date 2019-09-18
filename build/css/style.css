@@ -1,3 +1,6 @@
+.commit-hash {
+    cursor: pointer;
+}
 .breadcrumbs {
     padding: 12px 0 10px;
     font-family: arial, serif;
@@ -5,9 +8,22 @@
     border-bottom: 1px solid var(--color-light-border);
 }
 
-.commit-hash {
-    cursor: pointer;
+.commit-sequence {
+    font-size: var(--text-size-s);
+    line-height: var(--line-height-l);
 }
+
+    .commit-sequence__committer:before {
+            content: "by\00a0"
+        }
+
+    .commit-sequence__committer:after {
+            content: ",\00a0"
+        }
+
+    .commit-sequence__message {
+        font-weight: bold;
+    }
 .content-menu {
     position: -webkit-sticky;
     position: sticky;
@@ -81,75 +97,19 @@
 
 }    
 
-    .content-table__row {
-        position: relative;
-        display: -webkit-box;
-        display: -ms-flexbox;
+    .content-table__row {        
+        display: -webkit-box;        
+        display: -ms-flexbox;        
         display: flex;
         -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-        padding: 12px 30px 0 0;
-        border-bottom: 1px solid var(--color-light-border);        
-    }    
-
-    .content-table__row:after {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 50%;
-        display: block;
-        width: 10px;
-        height: 10px;            
-        border-top: 2px solid var(--color-light-border);
-        border-left: 2px solid var(--color-light-border);
-        -webkit-transform: translateY(-50%) rotate(135deg);
-                transform: translateY(-50%) rotate(135deg);       
+            flex-wrap: wrap;                     
+        width: 100%;
     }    
 
     .content-table__head {
         display: none;
         color: var(--color-faded);
     }    
-
-    .content-table__col {
-        margin-bottom: 10px;        
-        padding: 0;
-    }    
-
-    .content-table__col_name {
-        width: 100%;
-        -webkit-box-ordinal-group: 2;
-            -ms-flex-order: 1;
-                order: 1;
-    }    
-
-    .content-table__col_message {
-        width: 100%;
-        -webkit-box-ordinal-group: 3;
-            -ms-flex-order: 2;
-                order: 2;
-    }    
-
-    .content-table__col_commit {
-        margin-right: 8px;
-        -webkit-box-ordinal-group: 4;
-            -ms-flex-order: 3;
-                order: 3;
-    }    
-
-    .content-table__col_committer {
-        -webkit-box-ordinal-group: 5;
-            -ms-flex-order: 4;
-                order: 4;
-    }    
-
-    .content-table__col_committer:before {
-            content: "by\00a0"
-        }    
-
-    .content-table__col_committer:after {
-            content: ",\00a0"
-        }    
 
     .content-table__col_last {
         -webkit-box-ordinal-group: 101;
@@ -160,7 +120,8 @@
 
 @media screen and (min-width: 1440px) {
     .content-table {
-        display: table;   
+        display: table;
+
     }
 
         .content-table__head {
@@ -169,37 +130,16 @@
         }
 
         .content-table__row {
-            display: table-row;
-            padding: 0;
+            display: table-row;            
         }
 
         .content-table__row:after {
             display: none;     
-        }    
-    
+        }        
 
         .content-table__col {
-            display: table-cell;
-            margin-bottom: 0;
-            padding: 16px 0 8px;
-            border-bottom: 1px solid var(--color-light-border);
+            display: table-cell;                      
         }
-
-        .content-table__col_name {
-            width: auto;
-        }
-
-        .content-table__col_message {
-            width: auto;
-        }
-    
-            .content-table__col_committer:before {
-                display: none
-            }
-    
-            .content-table__col_committer:after {
-                display: none
-            }
 
 }
 .dropdown {
@@ -228,6 +168,86 @@
         -webkit-transform: rotate(45deg);
                 transform: rotate(45deg)
     }
+
+.files-table__item {
+        position: relative;
+        padding: 12px 30px 0 0;
+        border-bottom: 1px solid var(--color-light-border);           
+    }
+    .files-table__item:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        display: block;
+        width: 10px;
+        height: 10px;            
+        border-top: 2px solid var(--color-light-border);
+        border-left: 2px solid var(--color-light-border);
+        -webkit-transform: translateY(-50%) rotate(135deg);
+                transform: translateY(-50%) rotate(135deg);       
+    }
+    .files-table__field {
+        margin-bottom: 10px; 
+    }
+    .files-table__name {
+        width: 100%;
+        -webkit-box-ordinal-group: 2;
+            -ms-flex-order: 1;
+                order: 1;
+    }
+    .files-table__message {
+        width: 100%;
+        -webkit-box-ordinal-group: 3;
+            -ms-flex-order: 2;
+                order: 2;
+    }
+    .files-table__commit {
+        margin-right: 8px;
+        -webkit-box-ordinal-group: 4;
+            -ms-flex-order: 3;
+                order: 3;
+    }
+    .files-table__committer {
+        -webkit-box-ordinal-group: 5;
+            -ms-flex-order: 4;
+                order: 4;
+    }
+    .files-table__committer:before {
+            content: "by\00a0"
+        }
+    .files-table__committer:after {
+            content: ",\00a0"
+        }
+
+@media screen and (min-width: 1440px) {
+        .files-table__item {
+            padding: 0;
+            border: none;
+        }
+
+        .files-table__field {
+            margin-bottom: 0;
+            padding: 16px 0 8px;  
+            border-bottom: 1px solid var(--color-light-border);  
+        }
+
+        .files-table__name {
+            width: auto;
+        }
+
+        .files-table__message {
+            width: auto;
+        }
+    
+            .files-table__committer:before {
+                display: none
+            }
+    
+            .files-table__committer:after {
+                display: none
+            }
+}
 .icon {
     margin-right: 8px;
 } 
@@ -240,6 +260,16 @@
     .icon_branch {
         width: 13px;
         height: 10px;
+    } 
+
+    .icon_commit {
+        width: 40px;
+        height: 40px;
+    } 
+
+    .icon_edit-code {
+        width: 17px;
+        height: 15px;
     }
 .icon-plus {
     font-weight: bold;

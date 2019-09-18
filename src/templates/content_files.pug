@@ -1,53 +1,53 @@
-.content-table
+.content-table.files-table
     .content-table__row.content-table__head
-        .content-table__col Name
-        .content-table__col Last commit
-        .content-table__col Commit message
-        .content-table__col Committer
-        .content-table__col.content-table__col_last Updates
+        .content-table__col.files-table__field Name
+        .content-table__col.files-table__field Last commit
+        .content-table__col.files-table__field Commit message
+        .content-table__col.files-table__field Committer
+        .content-table__col.content-table__col_last.files-table__field Updates
 
-    .content-table__row
-        .content-table__col.content-table__col_name.icon-plus
+    .content-table__row.files-table__item
+        .content-table__col.files-table__field.files-table__name.icon-plus
             .icon-plus__icon 
                 svg.icon.icon_folder
                     use(xlink:href="../images/icons-sprite.svg#folder")
             .icon-plus__text api
-        .content-table__col.content-table__col_commit
+        .content-table__col.files-table__fieldfiles-table__commit
             span.link.link_color_accent d53dsv
-        .content-table__col.content-table__col_message [vcs] move http to arc
-        .content-table__col.content-table__col_committer 
+        .content-table__col.files-table__field.files-table__message [vcs] move http to arc
+        .content-table__col.files-table__field.files-table__committer
             span.link.link_user noxoomo
-        .content-table__col.content-table__col_updated.content-table__col_last 4 s ago
+        .content-table__col.files-table__field.files-table__updated.content-table__col_last 4 s ago
 
     - for (var x = 0; x < 10; x++)
-        .content-table__row
-            .content-table__col.content-table__col_name.icon-plus
+        .content-table__row.files-table__item
+            .content-table__col.files-table__field.files-table__name.icon-plus
                 .icon-plus__icon 
                     svg.icon.icon_folder
                         use(xlink:href="../images/icons-sprite.svg#folder")
                 .icon-plus__text ci
-            .content-table__col.content-table__col_commit
+            .content-table__col.files-table__field.files-table__commit
                 span.link.link_color_accent f5jdsv
-            .content-table__col.content-table__col_message 
+            .content-table__col.files-table__field.files-table__message 
                 span.link.link_color_accent ARCADIA-771:  
                 | append /trunk/arcadia/
-            .content-table__col.content-table__col_committer 
+            .content-table__col.files-table__field.files-table__committer
                 span.link.link_user annaveronika
-            .content-table__col.content-table__col_updated.content-table__col_last Dec 29, 2018
+            .content-table__col.files-table__field.files-table__updated.content-table__col_last Dec 29, 2018
 
     - for (var x = 0; x < 10; x++)
-        .content-table__row
-            .content-table__col.content-table__col_name.icon-plus
+        .content-table__row.files-table__item
+            .content-table__col.files-table__field.files-table__name.icon-plus
                 .icon-plus__icon 
                     svg.icon.icon_folder
                         use(xlink:href="../images/icons-sprite.svg#folder")
                 .icon-plus__text lib
-            .content-table__col.content-table__col_commit
+            .content-table__col.files-table__field.files-table__commit
                 span.link.link_color_accent d53dsv
-            .content-table__col.content-table__col_message [vcs] move http to arc
-            .content-table__col.content-table__col_committer 
+            .content-table__col.files-table__field.files-table__message [vcs] move http to arc
+            .content-table__col.files-table__field.files-table__committer 
                 span.link.link_user noxoomo
-            .content-table__col.content-table__col_updated.content-table__col_last 4 s ago
+            .content-table__col.files-table__field.files-table__updated.content-table__col_last 4 s ago
 
 
 

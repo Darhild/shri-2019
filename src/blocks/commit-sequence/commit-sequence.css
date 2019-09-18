@@ -1,0 +1,18 @@
+.commit-sequence {
+    font-size: var(--text-size-s);
+    line-height: var(--line-height-l);
+
+    &__committer {
+        &:before {
+            content: "by\00a0"
+        }
+    
+        &:after {
+            content: ",\00a0"
+        }
+    }
+
+    &__message {
+        font-weight: bold;
+    }
+}

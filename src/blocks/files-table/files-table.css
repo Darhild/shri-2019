@@ -1,0 +1,85 @@
+.files-table {
+    &__item {
+        position: relative;
+        padding: 12px 30px 0 0;
+        border-bottom: 1px solid var(--color-light-border);           
+    }
+
+    &__item:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        display: block;
+        width: 10px;
+        height: 10px;            
+        border-top: 2px solid var(--color-light-border);
+        border-left: 2px solid var(--color-light-border);
+        transform: translateY(-50%) rotate(135deg);       
+    } 
+
+    &__field {
+        margin-bottom: 10px; 
+    }
+
+    &__name {
+        width: 100%;
+        order: 1;
+    }
+
+    &__message {
+        width: 100%;
+        order: 2;
+    }
+
+    &__commit {
+        margin-right: 8px;
+        order: 3;
+    }
+
+    &__committer {
+        order: 4;
+
+        &:before {
+            content: "by\00a0"
+        }
+
+        &:after {
+            content: ",\00a0"
+        }
+    }    
+}
+
+@media screen and (min-width: $desktop-width) {
+    .files-table {
+        &__item {
+            padding: 0;
+            border: none;
+        }
+
+        &__field {
+            margin-bottom: 0;
+            padding: 16px 0 8px;  
+            border-bottom: 1px solid var(--color-light-border);  
+        }
+
+        &__name {
+            width: auto;
+        }
+
+        &__message {
+            width: auto;
+        }
+
+        &__committer {
+    
+            &:before {
+                display: none
+            }
+    
+            &:after {
+                display: none
+            }
+        }   
+    }
+}
