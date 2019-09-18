@@ -6,20 +6,32 @@ body {
 .main {
     --color-primary: #FF4F49;
     --color-accent: #1774E9;
+    --color-accent-secondary: #005FBA;
     --color-inactive: #7F8285;
     --color-faded: #B8BEC3;
+    --color-table-head: #F5F5F5;    
 
     --color-text-primary: #000000;
+    --color-text-secondary: #00234B;  
+    --color-text-faded: #999;
+    --color-text-comment: #8694A2;
+
 
     --color-main-border: #979797;
     --color-light-border: #F2F2F2;
+    --color-table-border: #E5E5E5;
 
-    --line-height-l: 20px;
-
-    --text-size-s: 14px;
+    --text-size-base: 14px;
+    --text-size-xs: 14px;
+    --text-size-s: 13px;
     --text-size-m: 16px;
     --text-size-l: 18px;
     --text-size-xl: 20px;
+
+    --line-height-base: 20px;
+    --line-height-s: 18px;
+
+    --padding-base: 32px;
 
     min-width: $mobile-width;
     margin: 0;
@@ -30,11 +42,25 @@ body {
         padding-right: 16px;
         padding-left: 16px;
     }
+
+    &__inner-content_p_t {
+        padding-top: 16px;
+    }
+
+    &__inner-content_width_full {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 @media screen and (min-width: $desktop-width) {
     .main {
         &__inner-content {
+            padding-right: 32px;
+            padding-left: 32px;
+        }
+
+        &__inner-content_width_full {
             padding-right: 32px;
             padding-left: 32px;
         }

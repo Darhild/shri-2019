@@ -1,6 +1,27 @@
 .breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
     padding: 12px 0 10px;
     font-family: arial, serif;
-    font-size: 14px;
+    font-size: var(--text-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-inactive);
     border-bottom: 1px solid var(--color-light-border);
+
+    &__parent {
+        position: relative;
+        margin-right: 40px;
+        cursor: pointer;
+
+        &:after {            
+            content: "/";
+            position: absolute;
+            right: -20px;
+        }
+    }
+
+    &__current {
+        font-weight: bold;
+        color: var(--color-text-primary);
+    }
 }

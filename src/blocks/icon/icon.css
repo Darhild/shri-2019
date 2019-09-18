@@ -23,4 +23,15 @@
         width: 17px;
         height: 15px;
     }
+
+    &_file {
+        width: 9px;
+        height: 13px;
+    }
+
+    &_download {
+        width: 14px;
+        height: 13px;
+        margin: 0;
+    }
 }

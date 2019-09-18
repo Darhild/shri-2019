@@ -1,8 +1,8 @@
 .commit-sequence {
     display: table;
     width: 100%;
-    font-size: var(--text-size-s);
-    line-height: var(--line-height-l);
+    font-size: var(--text-size-base);
+    line-height: var(--line-height-base);
 
     &__commit {
         display: table-row;        

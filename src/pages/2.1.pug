@@ -1,7 +1,11 @@
 extends ../templates/layout.pug
 
+block breadcrumbs 
+    include ../templates/breadcrumbs.pug
+
 block content-menu
     include ../templates/content-menu_branch.pug
 
 block content  
-    include ../templates/content_branches.pug
+    .main__inner-content
+        include ../templates/content_branches.pug

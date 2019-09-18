@@ -2,4 +2,12 @@
     &_color_accent {
         color: var(--color-accent)
     }
+
+    &_color_accent_dark {
+        color: var(--color-accent-secondary);
+    }   
+
+    &_comment {
+        color: var(--color-text-comment);
+    }
 }

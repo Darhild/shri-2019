@@ -2,11 +2,14 @@
     display: none;
 }
 
-@media(min-width: $desktop-width) {
+@media screen and (min-width: $desktop-width) {
     .main-footer {
         display: flex;
         padding: 18px 20px 14px; 
+        font-size: var(--text-size-s);
+        line-height: var(--line-height-s);
         color: var(--color-inactive);
+
 
         &__info {
             display: flex;

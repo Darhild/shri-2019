@@ -1,6 +1,7 @@
 .content-table {
     width: 100%;
-    line-height: var(--line-height-l);    
+    font-size: var(--text-size-base);
+    line-height: var(--line-height-base);    
 
     &__row {
         position: relative;

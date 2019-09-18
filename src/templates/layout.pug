@@ -8,13 +8,12 @@ body
     main.main
         include main-header.pug
         .main__inner-content
-            include breadcrumbs.pug
+            block breadcrumbs
             include main-title.pug   
 
-        block content-menu       
-             
-        .main__inner-content
-            block content
+        block content-menu
+        
+        block content
 
         block footer
         

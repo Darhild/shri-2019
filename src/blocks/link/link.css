@@ -9,11 +9,15 @@
         color: var(--color-accent);
     }
 
+    &_color_accent_dark {
+        color: var(--color-accent-secondary);
+    }    
+
     &_user {
         display: inline-block;
     }
 
     &_user:first-letter {
         color: var(--color-primary);
-    } 
+    }     
 }

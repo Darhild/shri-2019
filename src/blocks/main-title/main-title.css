@@ -1,7 +1,7 @@
 .main-title {
     padding-top: 10px;
     font-size: var(--text-size-xl);
-    line-height: var(--line-height-l);
+    line-height: var(--line-height-base);
 
     &__title {
         margin-bottom: 10px;
@@ -12,6 +12,6 @@
     }
 
     &__last-commit {
-        font-size: var(--text-size-s);
+        font-size: var(--text-size-base);
     }
 }

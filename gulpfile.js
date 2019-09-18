@@ -29,6 +29,7 @@ gulp.task('css', () =>  {
     next()
   ];
   return gulp.src(files)
+    .pipe(plumber())
     .pipe(postcss(plugins))
     .pipe(concat('style.css'))
     .pipe(gulp.dest('./build/css'))

@@ -5,6 +5,8 @@
     align-items: center;
     padding: 20px 16px ;
     font-family: arial, serif;
+    font-size: var(--text-size-base);
+    line-height: var(--line-height-base);
     background-color: #fff;
     border-bottom: 1px solid var(--color-main-border);
     z-index: 100;
