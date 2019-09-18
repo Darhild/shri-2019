@@ -34,6 +34,7 @@ body {
     --padding-base: 32px;
 
     min-width: $mobile-width;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
