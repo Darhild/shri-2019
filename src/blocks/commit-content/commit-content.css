@@ -8,7 +8,7 @@
     }
 
     &__head {
-        flex-wrap: wrap;
+        flex-wrap: wrap;        
     }
 
     &__letter {
@@ -17,9 +17,15 @@
         color: var(--color-text-message)
     }
 
+    &__file-path {
+        overflow: hidden;
+    }
+
     &__path {
         margin-right: 20px;
         font-weight: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     &__add-num {
@@ -41,6 +47,14 @@
     &__gow-to {
         margin-left: auto;
         cursor: pointer;
+    }
+
+    &_color_added {
+        background: var(--color-bg-added)
+    }
+
+    &_color_deleted {
+        background: var(--color-bg-deleted)
     }
 }
 

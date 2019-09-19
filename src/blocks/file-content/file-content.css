@@ -1,4 +1,4 @@
-.file-content {
+.file-content { 
     border: 1px solid var(--color-table-border);
 
     &__head {
@@ -24,11 +24,14 @@
     }
 
     &__content {
-        display: table;
-        padding: 8px 16px 10px;
+        width: 100%;
+        padding-top: 8px; 
+        padding-bottom: 10px;
+        font-family: var(--font-mono);
         font-size: var(--text-size-xs);
         line-height: var(--line-height-base);
-        color: var(--text-color-secondary);
+        color: var(--text-color-secondary);     
+        overflow: auto;  
     }
 
     &__col_p_l {
@@ -46,13 +49,20 @@
     }
 
     &__row {
-        display: flex;
+        display: flex; 
+        padding-right: 16px;            
     }
 
     &__row-num {
-        margin-right: 12px;
+        flex-shrink: 0;
+        width: 31px;
         color: var(--color-text-faded);
         text-align: right;
+    }
+
+    &__row-content {
+        margin-left: 8px;
+        word-break: break-all;
     }
 
 }
@@ -73,13 +83,17 @@
             cursor: pointer;
     
         }
-
-        &__content {
-            padding: 8px 24px 10px;
-        }     
+        
+        &__row {
+            padding-right: 24px;         
+        }
         
         &__row-num {
-            margin-right: 32px;
+            width: 41px;
+        }
+
+        &__row-content {
+            margin-left: 28px;
         }
     
     }

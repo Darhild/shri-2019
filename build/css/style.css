@@ -19,74 +19,6 @@
         -webkit-transform: translateY(-50%) rotate(-45deg);
                 transform: translateY(-50%) rotate(-45deg);     
     }
-.commit-content {
-
-    border-radius: 4px;
-}
-
-    .commit-content__main {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        width: 100%;
-    }
-
-    .commit-content__head {
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    }
-
-    .commit-content__letter {
-        -ms-flex-negative: 0;
-            flex-shrink: 0;
-        width: 26px;
-        color: var(--color-text-message)
-    }
-
-    .commit-content__path {
-        margin-right: 20px;
-        font-weight: normal;
-    }
-
-    .commit-content__add-num {
-        margin-right: 16px;
-        color: var(--color-text-added)
-    }
-
-    .commit-content__del-num {
-        margin-right: 24px;
-        color: var(--color-text-deleted)
-    }
-
-    .commit-content__details {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        width: 100%;
-       
-    }
-
-    .commit-content__gow-to {
-        margin-left: auto;
-        cursor: pointer;
-    }
-
-
-@media(min-width: 1440px) {
-
-        .commit-content__main {
-            width: auto;
-        }
-
-        .commit-content__details {
-            width: auto;
-            margin-left: auto;
-        }     
-        
-        .commit-content__gow-to {            
-            margin-left: 0;
-        }
-}
 .breadcrumbs {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -118,6 +50,88 @@
         color: var(--color-text-primary);
     }
 
+.commit-content {
+
+    border-radius: 4px;
+}
+
+    .commit-content__main {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+    }
+
+    .commit-content__head {
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;        
+    }
+
+    .commit-content__letter {
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+        width: 26px;
+        color: var(--color-text-message)
+    }
+
+    .commit-content__file-path {
+        overflow: hidden;
+    }
+
+    .commit-content__path {
+        margin-right: 20px;
+        font-weight: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .commit-content__add-num {
+        margin-right: 16px;
+        color: var(--color-text-added)
+    }
+
+    .commit-content__del-num {
+        margin-right: 24px;
+        color: var(--color-text-deleted)
+    }
+
+    .commit-content__details {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+       
+    }
+
+    .commit-content__gow-to {
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+    .commit-content_color_added {
+        background: var(--color-bg-added)
+    }
+
+    .commit-content_color_deleted {
+        background: var(--color-bg-deleted)
+    }
+
+
+@media(min-width: 1440px) {
+
+        .commit-content__main {
+            width: auto;
+        }
+
+        .commit-content__details {
+            width: auto;
+            margin-left: auto;
+        }     
+        
+        .commit-content__gow-to {            
+            margin-left: 0;
+        }
+}
 .commit-hash {
     cursor: pointer;
 }
@@ -418,7 +432,7 @@
         -webkit-transform: rotate(45deg);
                 transform: rotate(45deg)
     }
-.file-content {
+.file-content { 
     border: 1px solid var(--color-table-border);
 
 }
@@ -450,11 +464,14 @@
     }
 
     .file-content__content {
-        display: table;
-        padding: 8px 16px 10px;
+        width: 100%;
+        padding-top: 8px; 
+        padding-bottom: 10px;
+        font-family: var(--font-mono);
         font-size: var(--text-size-xs);
         line-height: var(--line-height-base);
-        color: var(--text-color-secondary);
+        color: var(--text-color-secondary);     
+        overflow: auto;  
     }
 
     .file-content__col_p_l_1 {
@@ -472,13 +489,21 @@
     .file-content__row {
         display: -webkit-box;
         display: -ms-flexbox;
-        display: flex;
+        display: flex; 
+        padding-right: 16px;            
     }
 
     .file-content__row-num {
-        margin-right: 12px;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+        width: 31px;
         color: var(--color-text-faded);
         text-align: right;
+    }
+
+    .file-content__row-content {
+        margin-left: 8px;
+        word-break: break-all;
     }
 
 
@@ -496,13 +521,17 @@
             cursor: pointer;
     
         }
-
-        .file-content__content {
-            padding: 8px 24px 10px;
-        }     
+        
+        .file-content__row {
+            padding-right: 24px;         
+        }
         
         .file-content__row-num {
-            margin-right: 32px;
+            width: 41px;
+        }
+
+        .file-content__row-content {
+            margin-left: 28px;
         }
     
 }
@@ -658,6 +687,7 @@
     display: -ms-flexbox;
     display: flex;
     padding: 7px 12px;
+    font-family: var(--font-mono);
     font-size: var(--text-size-xs);
     color: var(--color-text-faded);
     background-color: var(--color-info);
@@ -743,7 +773,9 @@ body {
     --color-inactive: #7F8285;
     --color-faded: #B8BEC3;
     --color-table-head: #F5F5F5;
-    --color-btn: #E6E6E6;    
+    --color-btn: #E6E6E6;
+    --color-bg-added: #E6FFED;
+    --color-bg-deleted: #FFEEF0; 
 
     --color-text-primary: #000000;
     --color-text-secondary: #00234B;  
@@ -752,6 +784,8 @@ body {
     --color-text-comment: #8694A2;
     --color-text-added: #19BC4D;
     --color-text-deleted: #FF3029;
+    --color-text-author: #008F00;
+    --color-text-type: #B4261A;
     --color-text-message: #6B69C7;
 
     --color-main-border: #979797;
@@ -759,6 +793,7 @@ body {
     --color-table-border: #E5E5E5;
 
     --font-base: arial, serif;
+    --font-mono: 'PT Mono', monospace;
 
     --text-size-base: 14px;
     --text-size-xs: 12px;
@@ -1053,6 +1088,12 @@ body {
     }
     .text_color_accent_dark {
         color: var(--color-accent-secondary);
+    }
+    .text_color_type {
+        color: var(--color-text-type);
+    }
+    .text_color_author {
+        color: var(--color-text-author);
     }
     .text_comment {
         color: var(--color-text-comment);

@@ -5,7 +5,15 @@
 
     &_color_accent_dark {
         color: var(--color-accent-secondary);
+    }  
+    
+    &_color_type {
+        color: var(--color-text-type);
     }   
+
+    &_color_author {
+        color: var(--color-text-author);
+    }  
 
     &_comment {
         color: var(--color-text-comment);

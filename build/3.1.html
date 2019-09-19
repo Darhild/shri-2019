@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Yandex Arcanum</title>
+  <link href="https://fonts.googleapis.com/css?family=PT+Mono&amp;display=swap" rel="stylesheet">
   <link href="../css/style.min.css" rel="stylesheet">
 </head>
 <body>
@@ -33,9 +34,8 @@
     <div class="main__inner-content main__inner-content_p_t main__inner-content_width_full">
       <div class="commit-content file-content"> 
         <div class="commit-content__head file-content__head">
-          <div class="commit-content__main">
-            <div class="commit-content__letter">M</div>
-            <div class="icon-plus">
+          <div class="commit-content__main"><span class="commit-content__letter">M</span>
+            <div class="icon-plus commit-content__file-path">
               <div class="icon-plus__icon"> 
                 <svg class="icon icon_file icon_faded">
                   <use xlink:href="../images/icons-sprite.svg#file"></use>
@@ -76,107 +76,163 @@
             <div class="file-content__col file-content__row-num">2</div>
             <div class="file-content__col file-content__row-num">2</div>
           </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">3</div>
+          <div class="file-content__row commit-content_color_added">
+            <div class="file-content__col file-content__row-num"> </div>
             <div class="file-content__col file-content__row-num">3</div>
             <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>java.util.ArrayList;</div>
           </div>
+          <div class="file-content__row commit-content_color_added">
+            <div class="file-content__col file-content__row-num"> </div>
+            <div class="file-content__col file-content__row-num">4</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>java.util.Collection;</div>
+          </div>
+          <div class="file-content__row commit-content_color_added">
+            <div class="file-content__col file-content__row-num"></div>
+            <div class="file-content__col file-content__row-num">5</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>java.util.List;</div>
+          </div>
+          <div class="file-content__row commit-content_color_added">
+            <div class="file-content__col file-content__row-num"> </div>
+            <div class="file-content__col file-content__row-num">6</div>
+          </div>
+          <div class="file-content__row">
+            <div class="file-content__col file-content__row-num">3</div>
+            <div class="file-content__col file-content__row-num">7</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>com.intellij.openapi.diagnostic.Logger;</div>
+          </div>
+          <div class="file-content__row commit-content_color_added">
+            <div class="file-content__col file-content__row-num"> </div>
+            <div class="file-content__col file-content__row-num">8</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>com.intellij.openapi.diagnostic.Logger;</div>
+          </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">4</div>
-            <div class="file-content__col file-content__row-num">4</div>
-            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>java.util.List;</div>
+            <div class="file-content__col file-content__row-num">9</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>import com.intellij.openapi.vcs.FilePath;</div>
           </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">5</div>
-            <div class="file-content__col file-content__row-num">6</div>
-            <div class="file-content__col file-content__row-content"><span class="text text_color_accen"></span></div>
+            <div class="file-content__col file-content__row-num">10</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>import com.intellij.openapi.vcs.VcsException;</div>
           </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">6</div>
+            <div class="file-content__col file-content__row-num">11</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>import com.intellij.openapi.vfs.VirtualFile;</div>
           </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">7</div>
-            <div class="file-content__col file-content__row-content">URLS = [ <span class="link link_color_accent_dark">'https://proxy.sandbox.yandex-team.ru/453818264'</span>, <span class="link link_color_accent_dark">'http://storage-int.mds.yandex.net/get-sandbox/110738/by_platform.json.453815347' </span> ]</div>
-          </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">8</div>
-            <div class="file-content__col file-content__row-content">MD5 =  <span class="link link_color_accent_dark">'7f5a85f9c28d35c3a76d8cea7af51106'</span></div>
-          </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">9</div>
-          </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">10</div>
-            <div class="file-content__col file-content__row-content">RETRIES = 5</div>
-          </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">11</div>
-            <div class="file-content__col file-content__row-content">HASH_PREFIX = 10</div>
-          </div>
-          <div class="file-content__row">
             <div class="file-content__col file-content__row-num">12</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>import com.intellij.vcsUtil.VcsUtil;</div>
           </div>
-          <div class="file-content__row">
+          <div class="file-content__row commit-content_color_added">
+            <div class="file-content__col file-content__row-num"> </div>
             <div class="file-content__col file-content__row-num">13</div>
-            <div class="file-content__col file-content__row-content">HOME_DIR = os.path.expanduser('~')</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>org.jetbrains.annotations.NotNull;</div>
           </div>
-          <div class="file-content__row">
+          <div class="file-content__row commit-content_color_added">
+            <div class="file-content__col file-content__row-num"> </div>
             <div class="file-content__col file-content__row-num">14</div>
           </div>
           <div class="file-content__row">
+            <div class="file-content__col file-content__row-num">8</div>
             <div class="file-content__col file-content__row-num">15</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>ru.yandex.devtools.intellij.arc.ArcContext;</div>
+          </div>
+          <div class="file-content__row">
+            <div class="file-content__col file-content__row-num">9</div>
+            <div class="file-content__col file-content__row-num">16</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>ru.yandex.devtools.intellij.arc.ArcRevisionNumber;</div>
+          </div>
+          <div class="file-content__row">
+            <div class="file-content__col file-content__row-num">10</div>
+            <div class="file-content__col file-content__row-num">17</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>ru.yandex.devtools.intellij.arc.ArcStatus;</div>
+          </div>
+          <div class="file-content__row commit-content_color_added">
+            <div class="file-content__col file-content__row-num"> </div>
+            <div class="file-content__col file-content__row-num">18</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>ru.yandex.devtools.intellij.arc.ui.ArcResetDialog;</div>
+          </div>
+          <div class="file-content__row">
+            <div class="file-content__col file-content__row-num"> </div>
+            <div class="file-content__col file-content__row-num">19</div>
+          </div>
+          <div class="file-content__row">
+            <div class="file-content__col file-content__row-num">9</div>
+            <div class="file-content__col file-content__row-num">16</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>ru.yandex.devtools.intellij.arc.ArcRevisionNumber;</div>
+          </div>
+          <div class="file-content__row">
+            <div class="file-content__col file-content__row-num">10</div>
+            <div class="file-content__col file-content__row-num">17</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>ru.yandex.devtools.intellij.arc.ArcStatus;</div>
+          </div>
+          <div class="file-content__row commit-content_color_deleted">
+            <div class="file-content__col file-content__row-num">12</div>
+            <div class="file-content__col file-content__row-num"> </div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>java.util.ArrayList;</div>
+          </div>
+          <div class="file-content__row commit-content_color_deleted">
+            <div class="file-content__col file-content__row-num">13</div>
+            <div class="file-content__col file-content__row-num"> </div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>java.util.Collection;</div>
+          </div>
+          <div class="file-content__row commit-content_color_deleted">
+            <div class="file-content__col file-content__row-num">14</div>
+            <div class="file-content__col file-content__row-num"> </div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">import </span>java.util.List;</div>
+          </div>
+          <div class="file-content__row commit-content_color_deleted">
+            <div class="file-content__col file-content__row-num">15</div>
+            <div class="file-content__col file-content__row-num"> </div>
           </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">16</div>
-            <div class="file-content__col file-content__row-content">               <strong>def <span class="text text_color_accent_dark">create_dirs</span></strong>(path)</div>
+            <div class="file-content__col file-content__row-num">20</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_author">/**</span></div>
           </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">17</div>
-            <div class="file-content__col file-content__row-content file-content__col_p_l_1"> <strong>try:</strong></div>
+            <div class="file-content__col file-content__row-num">21</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_author">* @author Dmitry Andreev <a href="mailto:AndreevDm@yandex-team.ru"></a></span></div>
           </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">18</div>
-            <div class="file-content__col file-content__row-content file-content__col_p_l_2">os.makedirs(path)</div>
+            <div class="file-content__col file-content__row-num">22</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_author">* @date 11/10/2018</span></div>
           </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">19</div>
-            <div class="file-content__col file-content__row-content file-content__col_p_l_1"><strong>except </strong>OSError <strong>as </strong>e: </div>
+            <div class="file-content__col file-content__row-num">23</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_author">*/</span></div>
           </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">20</div>
-            <div class="file-content__col file-content__row-content file-content__col_p_l_2"><strong>import </strong>errno </div>
+            <div class="file-content__col file-content__row-num">24</div>
+            <div class="file-content__col file-content__row-content"><span class="text text_color_accent">public </span><span class="text text_color_type">ArcCli</span>(<span class="text text_color_type">String </span>arcBinaryPath) {</div>
           </div>
           <div class="file-content__row">
             <div class="file-content__col file-content__row-num">21</div>
-          </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">22</div>
-            <div class="file-content__col file-content__row-content file-content__col_p_l_2"><strong>if </strong>e.errno != errno.EEXIST </div>
-          </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">23</div>
-            <div class="file-content__col file-content__row-content file-content__col_p_l_3"><strong>raise</strong></div>
-          </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">24</div>
-          </div>
-          <div class="file-content__row">
             <div class="file-content__col file-content__row-num">25</div>
-            <div class="file-content__col file-content__row-content file-content__col_p_l_2"><strong>return </strong>path</div>
+            <div class="file-content__col file-content__col_p_l_1 file-content__row-content">this.arcBinaryPath = arcBinaryPath;</div>
           </div>
           <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">26</div>
+            <div class="file-content__col file-content__row-num">21</div>
+            <div class="file-content__col file-content__row-num">25</div>
+            <div class="file-content__col file-content__row-content">}</div>
           </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">27</div>
+        </div>
+        <div class="info-panel commit-content__info-panel">
+          <div class="info-panel__text"> 
+            <div class="info-panel__text-item">@@ </div>
+            <div class="info-panel__text-item">-270, 160 </div>
+            <div class="info-panel__text-item">+270, 161 </div>
+            <div class="info-panel__text-item">@@</div>
           </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">28</div>
-            <div class="file-content__col file-content__row-content">               <strong>def <span class="text text_color_accent_dark">misc_root</span></strong>():</div>
-          </div>
-          <div class="file-content__row">
-            <div class="file-content__col file-content__row-num">29</div>
-            <div class="file-content__col file-content__row-content file-content__col_p_l_1"><strong>return </strong>create_dirs(os.getenv('<span class="text text_color_accent_dark">'YA_CACHE_DIR'</span>')' <strong>or </strong>os.path.join('HOME_DIR, <span class="text text_color_accent_dark">'.ya'</span>))</div>
+          <div class="info-panel__scroll">
+            <div class="scroll-item">Below 20 lines</div>
+            <div class="scroll-item scroll-item_above scroll-item_state_active">Above 20 lines</div>
           </div>
         </div>
       </div>
