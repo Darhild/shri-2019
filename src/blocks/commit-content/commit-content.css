@@ -1,0 +1,64 @@
+.commit-content {
+
+    border-radius: 4px;
+
+    &__main {
+        display: flex;
+        width: 100%;
+    }
+
+    &__head {
+        flex-wrap: wrap;
+    }
+
+    &__letter {
+        flex-shrink: 0;
+        width: 26px;
+        color: var(--color-text-message)
+    }
+
+    &__path {
+        margin-right: 20px;
+        font-weight: normal;
+    }
+
+    &__add-num {
+        margin-right: 16px;
+        color: var(--color-text-added)
+    }
+
+    &__del-num {
+        margin-right: 24px;
+        color: var(--color-text-deleted)
+    }
+
+    &__details {
+        display: flex;
+        width: 100%;
+       
+    }
+
+    &__gow-to {
+        margin-left: auto;
+        cursor: pointer;
+    }
+}
+
+
+@media(min-width: $desktop-width) {
+    .commit-content{
+
+        &__main {
+            width: auto;
+        }
+
+        &__details {
+            width: auto;
+            margin-left: auto;
+        }     
+        
+        &__gow-to {            
+            margin-left: 0;
+        }
+    }
+}

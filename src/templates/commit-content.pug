@@ -1,0 +1,185 @@
+.commit-content.file-content 
+    .commit-content__head.file-content__head
+        .commit-content__main
+            .commit-content__letter M
+
+            .icon-plus
+                .icon-plus__icon 
+                    svg.icon.icon_file.icon_faded
+                        use(xlink:href="../images/icons-sprite.svg#file")
+                .icon-plus__text.commit-content__path /trunk/arcadia/devtools/intellij/src/main/java/ru/yandex/devtools/intellij/arc/client/ArcCli.java 
+
+        .commit-content__details
+            .commit-content__add-num +100
+            .commit-content__del-num -81
+
+            .commit-content__gow-to
+                svg.icon.icon_download
+                    use(xlink:href="../images/icons-sprite.svg#gow-to")
+
+    .info-panel.commit-content__info-panel
+        .info-panel__text 
+            .info-panel__text-item @@ 
+            .info-panel__text-item -270, 160 
+            .info-panel__text-item +270, 161 
+            .info-panel__text-item @@
+        .info-panel__scroll
+            .scroll-item Below 20 lines
+            .scroll-item.scroll-item_above.scroll-item_state_active Above 20 lines
+
+    .file-content__content
+        .file-content__row
+            .file-content__col.file-content__row-num 1
+            .file-content__col.file-content__row-num 1
+            .file-content__col.file-content__row-content package ru.yandex.devtools.intellij.arc.client;
+
+        .file-content__row
+            .file-content__col.file-content__row-num 2
+            .file-content__col.file-content__row-num 2
+
+
+        .file-content__row
+            .file-content__col.file-content__row-num 3
+            .file-content__col.file-content__row-num 3
+            .file-content__col.file-content__row-content
+                span.text.text_color_accent import 
+                | java.util.ArrayList;
+
+        .file-content__row
+            .file-content__col.file-content__row-num 4
+            .file-content__col.file-content__row-num 4
+            .file-content__col.file-content__row-content
+                span.text.text_color_accent import 
+                | java.util.List;
+
+        .file-content__row
+            .file-content__col.file-content__row-num 5
+            .file-content__col.file-content__row-num 6
+            .file-content__col.file-content__row-content
+                span.text.text_color_accen
+        .file-content__row
+            .file-content__col.file-content__row-num 6
+
+        .file-content__row
+            .file-content__col.file-content__row-num 7
+            .file-content__col.file-content__row-content
+                | URLS = [ 
+                span.link.link_color_accent_dark 'https://proxy.sandbox.yandex-team.ru/453818264'
+                | , 
+                span.link.link_color_accent_dark 'http://storage-int.mds.yandex.net/get-sandbox/110738/by_platform.json.453815347' 
+                |  ]
+
+        .file-content__row
+            .file-content__col.file-content__row-num 8
+            .file-content__col.file-content__row-content
+                | MD5 =  
+                span.link.link_color_accent_dark '7f5a85f9c28d35c3a76d8cea7af51106'
+
+        .file-content__row
+            .file-content__col.file-content__row-num 9
+
+        .file-content__row
+            .file-content__col.file-content__row-num 10
+            .file-content__col.file-content__row-content RETRIES = 5
+
+        .file-content__row
+            .file-content__col.file-content__row-num 11
+            .file-content__col.file-content__row-content HASH_PREFIX = 10
+
+        .file-content__row
+            .file-content__col.file-content__row-num 12
+
+        .file-content__row
+            .file-content__col.file-content__row-num 13
+            .file-content__col.file-content__row-content HOME_DIR = os.path.expanduser('~')
+
+        .file-content__row
+            .file-content__col.file-content__row-num 14
+
+        .file-content__row
+            .file-content__col.file-content__row-num 15
+
+        .file-content__row
+            .file-content__col.file-content__row-num 16
+            .file-content__col.file-content__row-content                
+                strong def 
+                    span.text.text_color_accent_dark create_dirs
+                | (path)
+
+        .file-content__row
+            .file-content__col.file-content__row-num 17
+            .file-content__col.file-content__row-content.file-content__col_p_l_1 
+                strong try:
+
+        .file-content__row
+            .file-content__col.file-content__row-num 18
+            .file-content__col.file-content__row-content.file-content__col_p_l_2 os.makedirs(path)
+
+        .file-content__row
+            .file-content__col.file-content__row-num 19
+            .file-content__col.file-content__row-content.file-content__col_p_l_1
+                strong except 
+                | OSError 
+                strong as 
+                | e: 
+
+        .file-content__row
+            .file-content__col.file-content__row-num 20
+            .file-content__col.file-content__row-content.file-content__col_p_l_2
+                strong import 
+                | errno 
+
+        .file-content__row
+            .file-content__col.file-content__row-num 21
+
+        .file-content__row
+            .file-content__col.file-content__row-num 22
+            .file-content__col.file-content__row-content.file-content__col_p_l_2
+                strong if 
+                | e.errno != errno.EEXIST 
+
+        .file-content__row
+            .file-content__col.file-content__row-num 23
+            .file-content__col.file-content__row-content.file-content__col_p_l_3
+                strong raise
+
+        .file-content__row
+            .file-content__col.file-content__row-num 24
+
+        .file-content__row
+            .file-content__col.file-content__row-num 25
+            .file-content__col.file-content__row-content.file-content__col_p_l_2
+                strong return 
+                | path
+
+        .file-content__row
+            .file-content__col.file-content__row-num 26
+
+        .file-content__row
+            .file-content__col.file-content__row-num 27
+
+        .file-content__row
+            .file-content__col.file-content__row-num 28
+            .file-content__col.file-content__row-content                
+                strong def 
+                    span.text.text_color_accent_dark misc_root
+                | ():
+
+        .file-content__row
+            .file-content__col.file-content__row-num 29
+            .file-content__col.file-content__row-content.file-content__col_p_l_1
+                strong return 
+                | create_dirs(os.getenv('
+                span.text.text_color_accent_dark 'YA_CACHE_DIR'
+                | ')' 
+                strong or 
+                | os.path.join('HOME_DIR, 
+                span.text.text_color_accent_dark '.ya'
+                | ))
+
+
+
+
+
+
+

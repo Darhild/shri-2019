@@ -1,0 +1,12 @@
+.show {
+    display: flex;
+    padding: 6px 12px;
+    background: var(--color-btn);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &__icon {
+        margin-right: 6px;
+    }
+}
+

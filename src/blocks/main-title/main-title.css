@@ -3,8 +3,29 @@
     font-size: var(--text-size-xl);
     line-height: var(--line-height-base);
 
+    &__additional {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 12px;
+        font-size: var(--text-size-s);
+    }
+
     &__title {
         margin-bottom: 10px;
+    }
+
+    &__commit-title {
+        margin-bottom: 5px;
+        font-size: var(--text-size-xl);
+        line-height: var(--line-height-l);        
+        font-weight: bold;
+    }
+
+    &__commit-info {
+        font-size: var(--text-size-base);
+        color: var(--color-text-lighter);
     }
 
     &__name {       
@@ -13,5 +34,43 @@
 
     &__last-commit {
         font-size: var(--text-size-base);
+    }
+
+    &_commit {
+        padding-top: 8px;
+    }
+}
+
+
+@media(min-width: $desktop-width) {
+    .main-title {
+        &__main {
+            flex-shrink: 0;
+        }
+
+        &__additional {
+            align-items: flex-start;
+            order: 2;            
+            margin-left: auto;
+            width: auto;
+        }
+
+        &_commit {
+            display: flex;
+            width: 100%;
+            padding-top: 16px;
+        }
+
+        &__commit-title {
+            font-size: var(--text-size-xxl);
+        }
+
+        &__commit-info {
+            font-size: var(--text-size-m);
+        }
+        
+        &__back {
+            display: none;
+        }
     }
 }

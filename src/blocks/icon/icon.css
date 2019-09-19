@@ -1,6 +1,6 @@
 .icon {
     margin-right: 8px; 
-
+    
     &_folder {
         width: 12px;
         height: 9px;        
@@ -27,6 +27,7 @@
     &_file {
         width: 9px;
         height: 13px;
+        fill: black;
     }
 
     &_download {
@@ -34,4 +35,15 @@
         height: 13px;
         margin: 0;
     }
+
+    &_hamburger {
+        width: 12px;
+        height: 10px;
+        margin-right: 0;
+    }
+
+    &_faded {
+        fill: #B8BEC3;
+    }    
+    
 }

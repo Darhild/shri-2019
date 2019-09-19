@@ -1,0 +1,20 @@
+.back {    
+    position: relative;
+    padding-left: 15px;
+    color: var(--color-inactive);
+    cursor: pointer;
+
+    &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 10px;
+        display: block;
+        width: 6px;
+        height: 6px;            
+        border-top: 1px solid var(--color-inactive);
+        border-left: 1px solid var(--color-inactive);
+        transform: translateY(-50%) rotate(-45deg);     
+    }
+
+}

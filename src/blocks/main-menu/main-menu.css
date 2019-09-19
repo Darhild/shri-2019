@@ -1,6 +1,7 @@
 @import "./../../mixins.css";
 
 .main-menu {
+
     &__item {
         font-weight: bold;
         cursor: pointer;

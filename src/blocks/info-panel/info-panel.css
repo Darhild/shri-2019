@@ -1,0 +1,37 @@
+.info-panel {
+    position: relative;
+    display: flex;
+    padding: 7px 12px;
+    font-size: var(--text-size-xs);
+    color: var(--color-text-faded);
+    background-color: var(--color-info);
+    border-bottom: 1px solid var(--color-table-border);
+
+    &__scroll {
+        display: none;             
+    }
+
+    &__text {
+        display: flex;
+    }
+
+    &__text-item {
+        margin-right: 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+
+@media(min-width: $desktop-width) {
+    .info-panel {
+        &__scroll {
+            position: absolute;
+            left: 50%;        
+            display: flex;
+            transform: translateX(-50%);                
+        } 
+    }
+}

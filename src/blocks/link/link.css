@@ -19,5 +19,13 @@
 
     &_user:first-letter {
         color: var(--color-primary);
-    }     
+    }    
+    
+    &_committer:before {
+        content: "by\00a0"        
+    }
+
+    &_committer:after {
+        content: ",\00a0"        
+    }
 }
