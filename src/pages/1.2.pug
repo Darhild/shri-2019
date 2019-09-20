@@ -1,10 +1,16 @@
 extends ../templates/layout.pug
 
+block overlay
+    .overlay
+
 block breadcrumbs 
     include ../templates/breadcrumbs.pug
 
 block main-header
-    include ../templates/main-header.pug
+    include ../templates/main-header_active.pug
+
+block inner-menu
+    include ../templates/inner-menu_main-menu.pug
 
 block title
     include ../templates/main-title.pug 

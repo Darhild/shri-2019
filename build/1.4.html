@@ -18,6 +18,10 @@
     </div>
     <div class="main__title">
       <div class="breadcrumbs">
+        <div class="breadcrumbs__parent">root</div>
+        <div class="breadcrumbs__parent">trunk</div>
+        <div class="breadcrumbs__parent">arcadia</div>
+        <div class="breadcrumbs__parent">addapter</div>
         <div class="breadcrumbs__current">arcadia</div>
       </div>
       <div class="main-title">
@@ -334,12 +338,23 @@
         </div>
       </div>
     </div>
-    <div class="main-footer">
-      <div class="main-footer__text">Trade secrets of Yandex LLC. 16, Lev Tolstoy Str., Moscow, Russia, 119021</div>
-      <div class="main-footer__info">
-        <div class="main-footer__version">UI: 0.1.15</div>
-        <div class="main-footer__copyright">
-           © 2007—2019 <span class="link link_color_accent">Yandex</span></div>
+    <div class="main__inner-content main__inner-content_sticky main__inner-content_p_t main__inner-content_width_full">
+      <div class="file-content"> 
+        <div class="file-content__head">
+          <div class="icon-plus">
+            <div class="icon-plus__icon"> 
+              <svg class="icon icon_file">
+                <use xlink:href="../images/icons-sprite.svg#file"></use>
+              </svg>
+            </div>
+            <div class="icon-plus__text file-content__name">README.md </div>
+          </div>
+        </div>
+        <div class="file-content__content file-content__content_text-file">
+          <h2>Плагины и конфиги комбайна</h2>
+          <p class="text">Плагины - статически собираются в образ, любая модификация требует пересборки образа и перевыкатки сервиса. Перед перевыкаткой нужно не забыть поменять layers на новый, версию предыдущего layer можно посмотреть в сервисе. https://nanny.yandex-team.ru/ui/#/services/dashboards/catalog/combaine/</p>
+          <p class="text">Конфиги - деплоятся динамически через deploy-configs.py, который запускается по крону на всех комбайнах. Скрипт generator.py и deploy-configs.py деплоятся динамически вместе с конфигами. Каталог configs poll-ится на измененние svn ревизии раз в минуту, поэтому задержка деплоя конфигов в комбайн должна быть не больше минуты с момента мерджа в транк.</p>
+        </div>
       </div>
     </div>
   </main>

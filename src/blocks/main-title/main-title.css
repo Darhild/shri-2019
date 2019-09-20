@@ -2,6 +2,7 @@
     padding-top: 10px;
     font-size: var(--text-size-xl);
     line-height: var(--line-height-base);
+    box-sizing: border-box;
 
     &__additional {
         display: flex;

@@ -1,4 +1,6 @@
 .history {
+    box-sizing: border-box;
+
     &__day {
         margin-bottom: 14px;
     }

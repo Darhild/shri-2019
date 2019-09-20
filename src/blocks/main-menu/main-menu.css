@@ -1,6 +1,7 @@
 @import "./../../mixins.css";
 
 .main-menu {
+    box-sizing: border-box;
 
     &__item {
         font-weight: bold;
@@ -8,5 +9,7 @@
 
         @mixin menuItemAfter;
         @mixin menuItemBorder 100%, 3px, 0, -21px;
-    }
+    } 
+    
 }
+

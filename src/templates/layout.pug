@@ -6,9 +6,11 @@ head
     link(href="https://fonts.googleapis.com/css?family=PT+Mono&display=swap", rel="stylesheet")
     link(href="../css/style.min.css", rel="stylesheet")    
 body
+    block overlay
     main.main
-        include main-header.pug
-        .main__inner-content
+        block main-header
+        block inner-menu        
+        .main__title
             block breadcrumbs
             block title
 

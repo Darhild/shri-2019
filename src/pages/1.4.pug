@@ -1,7 +1,7 @@
 extends ../templates/layout.pug
 
 block breadcrumbs 
-    include ../templates/breadcrumbs.pug
+    include ../templates/breadcrumbs_detailed.pug
 
 block main-header
     include ../templates/main-header.pug
@@ -15,8 +15,8 @@ block content-menu
 block content  
     .main__inner-content
         include ../templates/content_files.pug
+    .main__inner-content.main__inner-content_sticky.main__inner-content_p_t.main__inner-content_width_full
+        include ../templates/readme.pug
 
-block footer
-    include ../templates/main-footer.pug
     
     

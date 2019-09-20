@@ -3,17 +3,26 @@
     top: 0;
     display: flex;
     align-items: center;
-    padding: 20px 16px ;
+    padding: 14px 16px 20px;
     font-family: arial, serif;
     font-size: var(--text-size-base);
     line-height: var(--line-height-base);
     background-color: #fff;
     border-bottom: 1px solid var(--color-main-border);
-    z-index: 100;
+    z-index: 200;
+    box-sizing: border-box;
+
+    &__menu {
+        margin-top: 6px;
+    }
 }
 
 @media(min-width: $desktop-width) {
     .main-header {
-        padding: 20px 32px; 
+        padding: 14px 32px 20px; 
+
+        &_state_active:before {
+            display: none;
+        }
     }
 }

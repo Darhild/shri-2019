@@ -1,0 +1,119 @@
+.inner-menu {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;          
+    background-color: var(--color-bg-base);    
+    border-radius: 10px 10px 0 0;
+    box-sizing: border-box;
+
+    &__head {
+        position: relative;
+        margin-top: 24px;
+        background-color: var(--color-bg-dark);
+    }
+
+    &__head {
+        .inner-menu__name {
+            color: var(--color-light-border);
+        }
+
+        .inner-menu__updated {
+            color: var(--color-text-light);
+        }        
+    }
+
+    &__head:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 12px;
+        display: block;
+        width: calc(100% - 24px);
+        height: 4px;
+        background-color: var(--color-bg-base);
+        border-bottom: 1px solid var(--color-table-border);
+    }
+
+    &__item {
+        padding: 10px 16px 6px;
+        padding-right: 16px;
+        padding-left: 16px; 
+        cursor: pointer;        
+    }
+
+    &__name {
+        font-weight: bold;
+    } 
+
+    &__updated {
+        font-size: var(--text-size-s);
+        color: var(--color-inactive);
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 8px;
+        left: 50%;
+        width: 42px;
+        height: 4px;
+        background: var(--color-table-border);
+        transform: translateX(-50%);
+    }    
+
+    &_main-menu {
+        padding-top: 36px;
+        padding-bottom: 20px;
+    }
+
+    &_trunk {
+
+        .inner-menu__item {
+            padding-right: 12px;
+            padding-left: 12px;            
+        }
+    }
+}
+
+@media(min-width: $desktop-width) {
+    .inner-menu {        
+        width: auto;        
+        box-shadow: 0px 4px 16px rgba(53, 73, 93, 0.2); 
+        border-radius: 0;       
+        
+        &__head {
+            margin-top: 4px;
+        }
+
+        &__content {
+            max-height: 296px;
+            overflow: auto;
+        }
+
+        &:before {
+            display: none;
+        }
+    
+        &__item {
+            padding: 10px 22px 6px;
+        }
+
+        &_main-menu {
+            top: 61px; 
+            bottom: initial;  
+            left: 190px; 
+            padding-top: 0;
+            padding-right: 83px;
+            padding-bottom: 12px;            
+        }
+
+        &_trunk {
+            top: 145px;
+            left: 105px;
+            bottom: initial; 
+            width: 320px;               
+        }
+    }
+}
