@@ -1,52 +1,52 @@
-.commit-content {
+.Commit-content {
     display: flex;
     flex-direction: column;
     border-radius: 4px;
     box-sizing: border-box;
 
-    &__main {
+    &-Main {
         display: flex;
         width: 100%;
     }
 
-    &__head {
+    &-Head {
         flex-wrap: wrap;        
     }
 
-    &__letter {
+    &-Letter {
         flex-shrink: 0;
         width: 26px;
         color: var(--color-text-message)
     }
 
-    &__file-path {
+    &-File-path {
         overflow: hidden;
     }
 
-    &__path {
+    &-Path {
         margin-right: 20px;
         font-weight: normal;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
-    &__add-num {
+    &-Add-num {
         margin-right: 16px;
         color: var(--color-text-added)
     }
 
-    &__del-num {
+    &-Del-num {
         margin-right: 24px;
         color: var(--color-text-deleted)
     }
 
-    &__details {
+    &-Details {
         display: flex;
         width: 100%;
        
     }
 
-    &__gow-to {
+    &-Gow-to {
         margin-left: auto;
         cursor: pointer;
     }
@@ -62,18 +62,18 @@
 
 
 @media(min-width: $desktop-width) {
-    .commit-content{
+    .Commit-content{
 
-        &__main {
+        &-Main {
             width: auto;
         }
 
-        &__details {
+        &-Details {
             width: auto;
             margin-left: auto;
         }     
         
-        &__gow-to {            
+        &-Gow-to {            
             margin-left: 0;
         }
     }

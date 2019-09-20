@@ -1,9 +1,9 @@
 @import "./../../mixins.css";
 
-.main-menu {
+.Main-menu {
     box-sizing: border-box;
 
-    &__item {
+    &-Item {
         font-weight: bold;
         cursor: pointer;
 

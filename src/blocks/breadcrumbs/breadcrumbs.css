@@ -1,15 +1,22 @@
-.breadcrumbs {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 12px 0 10px;
+@import "./../../mixins.css";
+
+.Breadcrumbs {        
     font-family: arial, serif;
     font-size: var(--text-size-base);
     line-height: var(--line-height-base);
     color: var(--color-inactive);
-    border-bottom: 1px solid var(--color-light-border);
+    
     box-sizing: border-box;
 
-    &__parent {
+    &-Wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 12px 0 10px;
+        border-bottom: 1px solid var(--color-light-border);
+        @mixin container;
+    }    
+
+    &-Parent {
         position: relative;
         margin-right: 40px;
         cursor: pointer;
@@ -21,7 +28,7 @@
         }
     }
 
-    &__current {
+    &-Current {
         font-weight: bold;
         color: var(--color-text-primary);
     }

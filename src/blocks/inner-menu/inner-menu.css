@@ -1,4 +1,6 @@
-.inner-menu {
+@import "./../../mixins.css";
+
+.Inner-menu {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -7,23 +9,25 @@
     border-radius: 10px 10px 0 0;
     box-sizing: border-box;
 
-    &__head {
+    @mixin container;
+
+    &-Head {
         position: relative;
         margin-top: 24px;
         background-color: var(--color-bg-dark);
     }
 
-    &__head {
-        .inner-menu__name {
+    &-Head {
+        .Inner-menu-Name {
             color: var(--color-light-border);
         }
 
-        .inner-menu__updated {
+        .Inner-menu-Updated {
             color: var(--color-text-light);
         }        
     }
 
-    &__head:after {
+    &-Head:after {
         content: "";
         position: absolute;
         bottom: -5px;
@@ -35,18 +39,18 @@
         border-bottom: 1px solid var(--color-table-border);
     }
 
-    &__item {
+    &-Item {
         padding: 10px 16px 6px;
         padding-right: 16px;
         padding-left: 16px; 
         cursor: pointer;        
     }
 
-    &__name {
+    &-Name {
         font-weight: bold;
     } 
 
-    &__updated {
+    &-Updated {
         font-size: var(--text-size-s);
         color: var(--color-inactive);
     }
@@ -70,7 +74,7 @@
 
     &_trunk {
 
-        .inner-menu__item {
+        .Inner-menu-Item {
             padding-right: 12px;
             padding-left: 12px;            
         }
@@ -78,16 +82,16 @@
 }
 
 @media(min-width: $desktop-width) {
-    .inner-menu {        
+    .Inner-menu {        
         width: auto;        
         box-shadow: 0px 4px 16px rgba(53, 73, 93, 0.2); 
         border-radius: 0;       
         
-        &__head {
+        &-Head {
             margin-top: 4px;
         }
 
-        &__content {
+        &-Content {
             max-height: 296px;
             overflow: auto;
         }
@@ -96,7 +100,7 @@
             display: none;
         }
     
-        &__item {
+        &-Item {
             padding: 10px 22px 6px;
         }
 

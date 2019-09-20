@@ -1,11 +1,11 @@
-.history {
+.History {
     box-sizing: border-box;
 
-    &__day {
+    &-Day {
         margin-bottom: 14px;
     }
 
-    &__title {
+    &-Title {
         padding: 18px 0 16px;
         font-size: var(--text-size-m);
         font-weight: bold;

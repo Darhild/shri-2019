@@ -1,22 +1,22 @@
-.commit-sequence {
+.Commit-sequence {
     display: table;
     width: 100%;
     font-size: var(--text-size-base);
     line-height: var(--line-height-base);
 
-    &__commit {
+    &-Commit {
         position: relative;
         display: table-row; 
         box-sizing: border-box;       
     }
 
-    &__field {
+    &-Field {
         display: table-cell;
         padding-bottom: 14px;
         vertical-align: top;
     }
 
-    &__icon {
+    &-Icon {
         position: relative;
         padding-right: 12px;
 
@@ -38,11 +38,11 @@
         }
     }    
 
-    &__commit:last-child .commit-sequence__icon:before {
+    &-Commit:last-child .Commit-sequence-Icon:before {
         display: none;
     }    
 
-    &__committer {
+    &-Committer {
         &:before {
             content: "by\00a0"
         }
@@ -52,17 +52,17 @@
         }
     }
 
-    &__message {
+    &-Message {
         padding-right: 25px;
         font-weight: bold;
         box-sizing: border-box;
     }
 
-    &__hash {
+    &-Hash {
         display: none;
     }
 
-    &__edit-code {
+    &-Edit-code {
         position: absolute;
         right: 17px;
         text-align: right;
@@ -72,12 +72,12 @@
 
 @media screen and (min-width: $desktop-width) {
 
-    .commit-sequence {
-        &__hash {
+    .Commit-sequence {
+        &-Hash {
             display: table-cell;
         }
 
-        &__edit-code {
+        &-Edit-code {
             position: relative;
             right: initial;
         }

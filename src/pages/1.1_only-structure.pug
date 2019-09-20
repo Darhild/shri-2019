@@ -1,13 +1,7 @@
 extends ../templates/layout.pug
 
-block overlay
-    .overlay
-
 block breadcrumbs 
     include ../templates/breadcrumbs.pug
-
-block inner-menu
-    include ../templates/inner-menu_main-menu.pug
 
 block title
     include ../templates/main-title.pug 
@@ -17,9 +11,7 @@ block content-menu
 
 block content  
     .Main-Inner-content
-        include ../templates/content_files.pug
+        include ../templates/content_files-only-structure.pug
 
-block footer
-    include ../templates/main-footer.pug
     
     

@@ -1,9 +1,9 @@
-.file-content {   
+.File-content {   
     flex-grow: 1;  
     border: 1px solid var(--color-table-border);
     box-sizing: border-box;
 
-    &__head {
+    &-Head {
         display: flex;
         align-items: center;
         padding: 8px 16px;
@@ -12,19 +12,19 @@
         border-bottom: 1px solid var(--color-table-border);
     }
 
-    &__name {
+    &-Name {
         margin-right: 5px;
     }
 
-    &__size {
+    &-Size {
         color: var(--color-text-faded);
     }
 
-    &__download {
+    &-Download {
         display: none;
     }
 
-    &__content {
+    &-Content {
         flex-grow: 1;
         width: 100%;
         padding-top: 8px; 
@@ -37,12 +37,12 @@
         box-sizing: border-box;
     }
 
-    &__content_text-file {
+    &-Content_text-file {
         padding: 16px 24px;
         font-family: var(--font-base);
     }
 
-    &__col_p_l {
+    &-Col_p_l {
         &_1 {
             padding-left: var(--padding-base);
         }
@@ -56,19 +56,19 @@
         }
     }
 
-    &__row {
+    &-Row {
         display: flex; 
         padding-right: 16px;            
     }
 
-    &__row-num {
+    &-Row-num {
         flex-shrink: 0;
         width: 31px;
         color: var(--color-text-faded);
         text-align: right;
     }
 
-    &__row-content {
+    &-Row-content {
         margin-left: 8px;
         word-break: break-all;
     }
@@ -77,10 +77,10 @@
 
 
 @media screen and (min-width: $desktop-width) {
-    .file-content {
+    .File-content {
         margin-bottom: 16px;
 
-        &__download {
+        &-Download {
             display: block;
             width: 38px;
             height: 28px;
@@ -93,19 +93,19 @@
     
         }
         
-        &__row {
+        &-Row {
             padding-right: 24px;         
         }
         
-        &__row-num {
+        &-Row-num {
             width: 41px;
         }
 
-        &__row-content {
+        &-Row-content {
             margin-left: 28px;
         }
 
-        &__content_text-file {
+        &-Content_text-file {
             padding: 24px 216px 24px 32px;
         }
     

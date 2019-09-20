@@ -1,9 +1,9 @@
-.content-table {
+.Content-table {
     width: 100%;
     font-size: var(--text-size-base);
     line-height: var(--line-height-base);    
 
-    &__row {
+    &-Row {
         position: relative;
         display: flex;
         flex-wrap: wrap;
@@ -11,7 +11,7 @@
         border-bottom: 1px solid var(--color-light-border);        
     }
 
-    &__row:after {
+    &-Row:after {
         content: "";
         position: absolute;
         right: 0;
@@ -24,31 +24,31 @@
         transform: translateY(-50%) rotate(135deg);       
     }    
 
-    &__head {
+    &-Head {
         display: none;
         color: var(--color-faded);
     }
 
-    &__col {
+    &-Col {
         margin-bottom: 10px;        
     }
 
-    &__col_name {
+    &-Col_name {
         width: 100%;
         order: 1;
     }
 
-    &__col_message {
+    &-Col_message {
         width: 100%;
         order: 2;
     }
 
-    &__col_commit {
+    &-Col_commit {
         margin-right: 8px;
         order: 3;
     }
 
-    &__col_committer {
+    &-Col_committer {
         order: 4;
 
         &:before {
@@ -60,7 +60,7 @@
         }
     }    
 
-    &__col_last {
+    &-Col_last {
         order: 100;
         text-align: right;
     }
@@ -68,25 +68,25 @@
 }
 
 @media screen and (min-width: $desktop-width) {
-    .content-table {
+    .Content-table {
         display: table;
 
-        &__head {
+        &-Head {
             display: table-row;
             color: var(--color-faded);
         }
 
-        &__row {
+        &-Row {
             display: table-row;
             padding: 0;
         }
 
-        &__row:after {
+        &-Row:after {
             display: none;     
         }    
     
 
-        &__col {
+        &-Col {
             display: table-cell;
             margin-bottom: 0;
             padding: 16px 0 8px;
@@ -94,15 +94,15 @@
             vertical-align: middle;
         }
 
-        &__col_name {
+        &-Col_name {
             width: auto;
         }
 
-        &__col_message {
+        &-Col_message {
             width: auto;
         }
 
-        &__col_committer {
+        &-Col_committer {
     
             &:before {
                 display: none

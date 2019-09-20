@@ -1,0 +1,36 @@
+.Structure {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 18px;    
+    padding: 22px 0;
+
+    &-Item {
+        padding: 16px 24px;
+        font-size: var(--text-size-l);
+        border-radius: 4px;
+        border-bottom: 3px solid var(--color-faded);
+        box-shadow: 0 0 10px rgba(53, 73, 93, 0.2); 
+        cursor: pointer;
+
+        .Icon_folder {
+            width: 18px;
+            height: 20px;
+        }
+
+        .Icon_file {
+            width: 15px;
+            height: 20px;
+        }
+    }
+
+    &-Item_hot {
+        border-color: var(--color-bg-hot);    
+    }
+}
+
+@media screen and (min-width: $desktop-width) {
+    .Structure {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+}

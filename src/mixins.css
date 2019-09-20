@@ -36,3 +36,11 @@
         border-bottom-color: $border-color;
     }
 } 
+
+@define-mixin container {
+    max-width: $desktop-width;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+        

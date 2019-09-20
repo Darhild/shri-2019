@@ -1,10 +1,12 @@
-.main-title {
+@import "./../../mixins.css";
+
+.Main-title {
     padding-top: 10px;
     font-size: var(--text-size-xl);
     line-height: var(--line-height-base);
     box-sizing: border-box;
 
-    &__additional {
+    &-Additional {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -13,27 +15,27 @@
         font-size: var(--text-size-s);
     }
 
-    &__title {
+    &-Title {
         margin-bottom: 10px;
     }
 
-    &__commit-title {
+    &-Commit-title {
         margin-bottom: 5px;
         font-size: var(--text-size-xl);
         line-height: var(--line-height-l);        
         font-weight: bold;
     }
 
-    &__commit-info {
+    &-Commit-info {
         font-size: var(--text-size-base);
         color: var(--color-text-lighter);
     }
 
-    &__name {       
+    &-Name {       
        font-weight: bold;
     }
 
-    &__last-commit {
+    &-Last-commit {
         font-size: var(--text-size-base);
     }
 
@@ -44,12 +46,12 @@
 
 
 @media(min-width: $desktop-width) {
-    .main-title {
-        &__main {
+    .Main-title {
+        &-Main {
             flex-shrink: 0;
         }
 
-        &__additional {
+        &-Additional {
             align-items: flex-start;
             order: 2;            
             margin-left: auto;
@@ -62,15 +64,15 @@
             padding-top: 16px;
         }
 
-        &__commit-title {
+        &-Commit-title {
             font-size: var(--text-size-xxl);
         }
 
-        &__commit-info {
+        &-Commit-info {
             font-size: var(--text-size-m);
         }
         
-        &__back {
+        &-Back {
             display: none;
         }
     }

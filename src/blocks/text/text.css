@@ -1,4 +1,4 @@
-.text {
+.Text {
     &_color_accent {
         color: var(--color-accent)
     }

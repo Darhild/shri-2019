@@ -1,6 +1,6 @@
 @import "./../../mixins.css";
 
-.dropdown {
+.Dropdown {
     display: inline-block;
     color: var(--color-inactive);
     cursor: pointer;

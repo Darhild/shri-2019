@@ -1,4 +1,4 @@
-.overlay {        
+.Overlay {        
     position: fixed;
     top: 0;
     right: 0;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (min-width: $desktop-width) {
-    .overlay {
+    .Overlay {
         display: none;
     }    
 }

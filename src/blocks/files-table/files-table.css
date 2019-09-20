@@ -1,11 +1,11 @@
-.files-table {
-    &__item {
+.Files-table {
+    &-Item {
         position: relative;
         padding: 12px 30px 0 0;
         border-bottom: 1px solid var(--color-light-border);           
     }
 
-    &__item:after {
+    &-Item:after {
         content: "";
         position: absolute;
         right: 0;
@@ -18,26 +18,26 @@
         transform: translateY(-50%) rotate(135deg);       
     } 
 
-    &__field {
+    &-Field {
         margin-bottom: 10px; 
     }
 
-    &__name {
+    &-Name {
         width: 100%;
         order: 1;
     }
 
-    &__message {
+    &-Message {
         width: 100%;
         order: 2;
     }
 
-    &__commit {
+    &-Commit {
         margin-right: 8px;
         order: 3;
     }
 
-    &__committer {
+    &-Committer {
         order: 4;
 
         &:before {
@@ -51,27 +51,27 @@
 }
 
 @media screen and (min-width: $desktop-width) {
-    .files-table {
-        &__item {
+    .Files-table {
+        &-Item {
             padding: 0;
             border: none;
         }
 
-        &__field {
+        &-Field {
             margin-bottom: 0;
             padding: 16px 0 8px;  
             border-bottom: 1px solid var(--color-light-border);  
         }
 
-        &__name {
+        &-Name {
             width: auto;
         }
 
-        &__message {
+        &-Message {
             width: auto;
         }
 
-        &__committer {
+        &-Committer {
     
             &:before {
                 display: none

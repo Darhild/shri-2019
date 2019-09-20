@@ -1,22 +1,27 @@
-.main-footer {
+@import "./../../mixins.css";
+
+.Main-footer {
     display: none;
 }
 
 @media screen and (min-width: $desktop-width) {
-    .main-footer {
+    .Main-footer {
         display: flex;
+        width: 100%;
         padding: 18px 20px 14px; 
         font-size: var(--text-size-s);
         line-height: var(--line-height-s);
         color: var(--color-inactive);
 
+        @mixin container;
 
-        &__info {
+
+        &-Info {
             display: flex;
             margin-left: auto;
         }
 
-        &__version {
+        &-Version {
             margin-right: 32px;
         }
     }
