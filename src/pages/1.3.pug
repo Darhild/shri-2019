@@ -1,16 +1,16 @@
 extends ../templates/layout.pug
 
 block overlay
-    .overlay
+    .Overlay
+
+block main-header
+    include ../templates/main-header.pug
 
 block breadcrumbs 
     include ../templates/breadcrumbs.pug
 
-block inner-menu
-    include ../templates/inner-menu_trunk.pug
-
 block title
-    include ../templates/main-title.pug 
+    include ../templates/main-title_with-inner.pug 
 
 block content-menu
     include ../templates/content-menu_files.pug

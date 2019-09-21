@@ -1,6 +1,7 @@
 @import "./../../mixins.css";
 
 .Main-menu {
+    position: relative;
     box-sizing: border-box;
 
     &-Item {
@@ -9,7 +10,30 @@
 
         @mixin menuItemAfter;
         @mixin menuItemBorder 100%, 3px, 0, -21px;
+        
     } 
+
+    &-Item:hover {
+        color: var(--color-primary);
+    }
+
+    &-Inner-menu {
+        padding-top: 36px;
+        padding-bottom: 20px;
+    }
     
+}
+
+@media screen and (min-width: $desktop-width) {
+    .Main-menu {
+        &-Inner-menu {
+            top: 41px; 
+            bottom: initial;  
+            min-width: 266px;
+            padding-top: 0; 
+            padding-bottom: 12px;    
+        }
+    }
+
 }
 

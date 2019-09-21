@@ -31,6 +31,10 @@
             margin-right: 0;
         }
 
+        &:hover {
+            color: var(--color-primary);
+        }
+
         &_state_active {
             color: var(--color-text-primary);            
             @mixin menuItemBorder 100%, 3px, 0, -9px;

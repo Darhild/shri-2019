@@ -3,12 +3,14 @@
     
     &_folder {
         width: 12px;
-        height: 9px;        
+        height: 9px;
+        fill: var(--color-text-primary);        
     }
 
     &_branch {
         width: 13px;
         height: 10px;
+        fill: var(--color-text-primary);
     }
 
     &_commit {
@@ -22,12 +24,13 @@
     &_edit-code {
         width: 17px;
         height: 15px;
+        fill: var(--color-inactive);
     }
 
     &_file {
         width: 9px;
         height: 13px;
-        fill: black;
+        fill: var(--color-text-primary); 
     }
 
     &_download {

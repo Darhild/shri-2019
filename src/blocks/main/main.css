@@ -1,11 +1,6 @@
 @import "./../../mixins.css";
 
-body {
-    margin: 0;
-    padding: 0;
-}
-
-.Main {
+html {
     --color-bg-base: #fff;
     --color-bg-dark: #4F4F4F;
     --color-primary: #FF4F49;
@@ -52,6 +47,36 @@ body {
     --line-height-l: 28px;
 
     --padding-base: 32px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    width: 8px;   
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {   
+    background-color:#fff;
+}
+
+::-webkit-scrollbar-thumb {    
+    background-color: var(--color-table-border);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;    
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-bg-dark);
+}
+
+.Main {  
 
     display: flex;
     flex-direction: column;
@@ -96,7 +121,9 @@ body {
     &-Inner-content_sticky {
         position: sticky;
         bottom: 0;
+        max-height: 50vh;
         background-color:var(--color-bg-base);
+        z-index: 150;        
     }
 }
 
@@ -115,6 +142,10 @@ body {
         &-Inner-content_width_full {
             padding-right: 32px;
             padding-left: 32px;
+        }
+
+        &-Inner-content_sticky {
+            max-height: initial;
         }
     }
 }

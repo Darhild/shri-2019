@@ -8,5 +8,9 @@
     &-Icon {
         margin-right: 6px;
     }
+
+    &:hover {
+        background: var(--color-info);
+     }
 }
 

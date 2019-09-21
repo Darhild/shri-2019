@@ -26,6 +26,10 @@
             position: absolute;
             right: -20px;
         }
+
+        &:hover {
+            color: var(--color-primary);
+        }
     }
 
     &-Current {

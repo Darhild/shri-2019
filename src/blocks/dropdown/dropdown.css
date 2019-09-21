@@ -1,9 +1,36 @@
 @import "./../../mixins.css";
 
 .Dropdown {
+    position: relative;
     display: inline-block;
-    color: var(--color-inactive);
-    cursor: pointer;
 
-    @mixin menuItemAfter;
+    &-Name {
+        display: inline-block;
+        font-size: var(--text-size-xl);
+        cursor: pointer;
+
+        @mixin menuItemAfter; 
+    }
+
+    &-Name:hover {
+        color: var(--color-primary);
+    }
+
+    &-Inner-menu {
+        .Inner-menu-Item {
+            padding-right: 12px;
+            padding-left: 12px;            
+        } 
+    }
 }
+
+@media screen and (min-width: $desktop-width) {
+    .Dropdown {
+        &-Inner-menu {
+            top: 25px;
+            bottom: initial; 
+            min-width: 320px; 
+        }
+    }
+}
+

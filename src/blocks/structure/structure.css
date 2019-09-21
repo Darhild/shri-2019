@@ -23,8 +23,28 @@
         }
     }
 
+    &-Item:hover {
+        border-color: var(--color-accent); 
+
+        .Icon {
+            fill: var(--color-accent);
+        }
+    }
+
     &-Item_hot {
         border-color: var(--color-bg-hot);    
+    }
+
+    &-Item:hover {
+        border-color: var(--color-accent); 
+
+        .Icon-plus {
+            color: var(--color-accent);
+        }
+
+        .Icon {
+            fill: var(--color-accent);
+        }
     }
 }
 

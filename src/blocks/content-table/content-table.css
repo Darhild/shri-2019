@@ -36,6 +36,15 @@
     &-Col_name {
         width: 100%;
         order: 1;
+        cursor: pointer;
+    }
+
+    &-Col_name:hover {
+        color: var(--color-primary);
+
+        .Icon {
+            fill: var(--color-primary);
+        }
     }
 
     &-Col_message {

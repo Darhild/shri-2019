@@ -68,6 +68,12 @@
         text-align: right;
         cursor: pointer;
     }
+
+    &-Edit-code:hover {
+        .Icon {
+            fill: var(--color-accent);
+        }
+    }
 }
 
 @media screen and (min-width: $desktop-width) {

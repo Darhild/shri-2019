@@ -9,6 +9,10 @@
         color: var(--color-accent);
     }
 
+    &_color_accent:hover {
+        color: var(--color-primary);
+    }
+
     &_color_accent_dark {
         color: var(--color-accent-secondary);
     }    

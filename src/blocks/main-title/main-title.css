@@ -1,8 +1,7 @@
 @import "./../../mixins.css";
 
 .Main-title {
-    padding-top: 10px;
-    font-size: var(--text-size-xl);
+    padding-top: 10px;    
     line-height: var(--line-height-base);
     box-sizing: border-box;
 
@@ -31,8 +30,12 @@
         color: var(--color-text-lighter);
     }
 
-    &-Name {       
-       font-weight: bold;
+    &-Name {
+        display: inline-block;
+        font-size: var(--text-size-xl);       
+        
+        
+        font-weight: bold;
     }
 
     &-Last-commit {
