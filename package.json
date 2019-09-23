@@ -10,6 +10,8 @@
     "browser-sync": "^2.26.7",
     "csso": "^3.5.1",
     "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^3.0.1",
