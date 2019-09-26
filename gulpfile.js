@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 const path = require('path');
 const gulp = require('gulp');
 const pug = require('gulp-pug');
@@ -11,6 +12,7 @@ const next = require('postcss-cssnext');
 const concat = require('gulp-concat');
 const csso = require('gulp-csso');
 const rename = require('gulp-rename');
+const rigger = require('gulp-rigger');
 const server = require('browser-sync').create();
 
 const files = [
@@ -23,7 +25,7 @@ gulp.task('css', () =>  {
     postcssMixins({
     }),
     postcssSimpleVars({
-      variables: function() {return require('./src/variables.js')}
+      variables: function() { return require('./src/variables.js') }
     }),
     postcssNested(),
     next()
@@ -40,12 +42,19 @@ gulp.task('css', () =>  {
 });
 
 gulp.task('pug', function(){
-  return gulp.src('./src/pages/**/*.pug',)
-      .pipe(pug({
-        pretty: true
-      }))
-      .pipe(gulp.dest('./build'))
-      .pipe(server.reload({stream: true}))
+  return gulp.src('./src/pages/**/*.pug')
+    .pipe(pug({
+      pretty: true
+    }))
+    .pipe(gulp.dest('./build'))
+    .pipe(server.reload({stream: true}))
+});
+
+gulp.task('js', function(){
+  return gulp.src('./src/js/**/*.js')
+    .pipe(rigger())
+    .pipe(gulp.dest('./build/js'))    
+    .pipe(server.reload({stream: true}))
 });
 
 gulp.task("serve", function () {
@@ -60,5 +69,6 @@ gulp.task("serve", function () {
   });
 
   gulp.watch("./src/blocks/**/*.css", gulp.series("css"));
+  gulp.watch("./src/**/*.js", gulp.series("js"));
   gulp.watch("./src/**/*.pug", gulp.series("pug"));
 });
