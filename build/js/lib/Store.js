@@ -5,7 +5,7 @@ export default class Store {
     this._state = undefined;
     this._listeners = [];
     this.dispatch({
-      type: '@@init',
+      type: 'INIT',
     });
   }
 

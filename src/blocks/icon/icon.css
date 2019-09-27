@@ -47,6 +47,12 @@
 
     &_faded {
         fill: #B8BEC3;
-    }    
+    }  
+    
+    &_search {
+        width: 20px;
+        height: 20px;
+        fill: var(--color-bg-dark);
+    }  
     
 }

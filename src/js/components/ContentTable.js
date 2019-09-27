@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import View from './../lib/View.js';
 
 export default class ContentTable extends View {
@@ -8,7 +9,7 @@ export default class ContentTable extends View {
   }
 
   render() {
-    return `
+    let html = `
       <div class="Content-table">
         <div class="Content-table-Row Content-table-Head">
           <div class="Content-table-Col">Name</div>
@@ -16,22 +17,31 @@ export default class ContentTable extends View {
           <div class="Content-table-Col">Commit message</div>
           <div class="Content-table-Col">Committer</div>
           <div class="Content-table-Col Content-table-Col_last">Updates</div>
-        </div>
-        <div class="Content-table-Row">
-          <div class="Content-table-Col Content-table-Col_name Icon-plus">
-            <div class="Icon-plus-Icon"> 
-              <svg class="Icon Icon_folder">
-                <use xlink:href="images/icons-sprite.svg#folder"></use>
-              </svg>
+        </div>`;
+
+    if (this._store._state) {
+      html += `
+        ${this._store._state.files.map (file => `
+          <div class="Content-table-Row">
+            <div class="Content-table-Col Content-table-Col_name Icon-plus">
+              <div class="Icon-plus-Icon"> 
+                <svg class="Icon Icon_${file.type}">
+                  <use xlink:href="images/icons-sprite.svg#${file.type}"></use>
+                </svg>
+              </div>
+              <div class="Icon-plus-Text">${file.name}</div>
             </div>
-            <div class="Icon-plus-Text">api</div>
+            <div class="Content-table-Col Content-table-Col_commit"><span class="Link Link_color_accent">${file.lastCommit}</span></div>
+            <div class="Content-table-Col Content-table-Col_message">${file.message}</div>
+            <div class="Content-table-Col Content-table-Col_committer"> <span class="Link Link_user">${file.committer}</span></div>
+            <div class="Content-table-Col Content-table-Col_updated Content-table-Col_last"${file.commitDate}</div>
           </div>
-          <div class="Content-table-Col Content-table-Col_commit"><span class="Link Link_color_accent">d53dsv</span></div>
-          <div class="Content-table-Col Content-table-Col_message">[vcs] move http to arc</div>
-          <div class="Content-table-Col Content-table-Col_committer"> <span class="Link Link_user">noxoomo</span></div>
-          <div class="Content-table-Col Content-table-Col_updated Content-table-Col_last">4 s ago</div>
         </div>
-      </div>
-    `;
+      `).join('')}`;
+    }
+
+    html += '</div>';
+
+    return html;
   }
 }

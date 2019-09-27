@@ -24,13 +24,35 @@
     &-Menu {
         margin-top: 6px;
     }
+
+    &-Search {
+        display: none;
+    }
+}
+
+@media(min-width: 440px) {
+    .Main-header {
+        &-Wrapper {
+            padding: 14px 32px; 
+        }
+
+        &-Search-input {
+            padding: 8px 5px;
+        }
+
+        &-Search {
+            display: block;
+            width: 25%;
+            margin-left: auto;            
+        }
+    }    
 }
 
 @media(min-width: $desktop-width) {
-    .Main-header {        
-
-        &-Wrapper {
-            padding: 14px 32px 20px; 
+    .Main-header { 
+        &-Search {
+            display: block;
+            width: 20%;          
         }
 
         &_state_active:before {
