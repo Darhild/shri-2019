@@ -97,6 +97,31 @@ app.get('(/api/repos/:repositoryId/commits/:commitHash)(/diff)?', async (req, re
   }
 });
 
+app.get('/api/repos/:repositoryId/files', async (req, res) => {
+  let files;
+  try {
+    files = await readdir(repositoryPath);    
+  } catch (err) {
+    res.send({ error: err.message });
+  }
+
+  Promise.all(files.map((file) => {
+    return new Promise((resolve) => {
+      exec(`git log --pretty=format:"%h %ad`, { cwd: repositoryPath }, (err, out) => {
+        resolve(out);        
+      });
+    })    
+  }))
+    .then((responses) => {
+      let data = [];    
+      responses.forEach((response) => {                 
+        data.push(response);
+        })
+      return data;
+    })
+    .then(result => res.json(result))  
+});
+
 app.get('(/api/repos/:repositoryId)(/tree/:commitHash)?(/:path)?', (req, res) => {
   let endpoint = repositoryPath;
   let branch = 'master';

@@ -10,16 +10,8 @@ const search = new Search(
   document.querySelector('.Search'), store
 );
 
-console.log(search);
-
-console.log(store);
-
 const contentTable = new ContentTable(
   document.querySelector('.Comp-Content-table'), store
 );
 
-console.log(contentTable);
-
-store.subscribe(search.render);
-store.subscribe(contentTable.render);
 store.dispatch(addFiles(initialData));

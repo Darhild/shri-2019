@@ -34,9 +34,8 @@ export default class ContentTable extends View {
             <div class="Content-table-Col Content-table-Col_commit"><span class="Link Link_color_accent">${file.lastCommit}</span></div>
             <div class="Content-table-Col Content-table-Col_message">${file.message}</div>
             <div class="Content-table-Col Content-table-Col_committer"> <span class="Link Link_user">${file.committer}</span></div>
-            <div class="Content-table-Col Content-table-Col_updated Content-table-Col_last"${file.commitDate}</div>
+            <div class="Content-table-Col Content-table-Col_updated Content-table-Col_last">${file.commitDate}</div>
           </div>
-        </div>
       `).join('')}`;
     }
 
