@@ -15,3 +15,8 @@ const contentTable = new ContentTable(
 );
 
 store.dispatch(addFiles(initialData));
+/*
+fetch('http://localhost:8000/api/repos/yeticave/files')
+.then((data) => data.json())
+.then((files) => store.dispatch(addFiles(files)))
+*/

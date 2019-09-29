@@ -25,16 +25,16 @@ export default class ContentTable extends View {
           <div class="Content-table-Row">
             <div class="Content-table-Col Content-table-Col_name Icon-plus">
               <div class="Icon-plus-Icon"> 
-                <svg class="Icon Icon_${file.type}">
-                  <use xlink:href="images/icons-sprite.svg#${file.type}"></use>
+                <svg class="Icon Icon_folder">
+                  <use xlink:href="images/icons-sprite.svg#folder"></use>
                 </svg>
               </div>
-              <div class="Icon-plus-Text">${file.name}</div>
+              <div class="Icon-plus-Text">${file.name ? file.name : ''}</div>
             </div>
-            <div class="Content-table-Col Content-table-Col_commit"><span class="Link Link_color_accent">${file.lastCommit}</span></div>
-            <div class="Content-table-Col Content-table-Col_message">${file.message}</div>
-            <div class="Content-table-Col Content-table-Col_committer"> <span class="Link Link_user">${file.committer}</span></div>
-            <div class="Content-table-Col Content-table-Col_updated Content-table-Col_last">${file.commitDate}</div>
+            <div class="Content-table-Col Content-table-Col_commit"><span class="Link Link_color_accent">${file.lastCommit ? file.lastCommit : ''}</span></div>
+            <div class="Content-table-Col Content-table-Col_message">${file.message ? file.message : ''}</div>
+            <div class="Content-table-Col Content-table-Col_committer"> <span class="Link Link_user">${file.committer ? file.committer : ''}</span></div>
+            <div class="Content-table-Col Content-table-Col_updated Content-table-Col_last">${file.commitDate ? file.commitDate : ''}</div>
           </div>
       `).join('')}`;
     }

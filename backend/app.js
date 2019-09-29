@@ -36,6 +36,11 @@ app.param('path', (req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");  
+  next();
+});
+
 app.use(/\/api\/repos\/.*/, checkIfREpositoryExists);
 
 app.get('/api/repos', async (req, res) => {
@@ -100,26 +105,28 @@ app.get('(/api/repos/:repositoryId/commits/:commitHash)(/diff)?', async (req, re
 app.get('/api/repos/:repositoryId/files', async (req, res) => {
   let files;
   try {
-    files = await readdir(repositoryPath);    
+    files = await readdir(repositoryPath);
   } catch (err) {
     res.send({ error: err.message });
   }
 
   Promise.all(files.map((file) => {
+    let data = [`name - ${file}`];
     return new Promise((resolve) => {
-      exec(`git log --pretty=format:"%h %ad`, { cwd: repositoryPath }, (err, out) => {
-        resolve(out);        
+      exec(`git log --pretty=format:" lastCommit - %h, message - %s, committer - %an, commitDate - %cr" -1 ${file}`, { cwd: repositoryPath }, (err, out) => {
+        data.push(out);
+        resolve(data.toString());
       });
-    })    
+    })
   }))
     .then((responses) => {
-      let data = [];    
-      responses.forEach((response) => {                 
-        data.push(response);
+      let data = [];
+      responses.forEach((response) => {
+        data.push(formatCodeForFileTable(response));
         })
       return data;
     })
-    .then(result => res.json(result))  
+    .then(result => res.json(result))
 });
 
 app.get('(/api/repos/:repositoryId)(/tree/:commitHash)?(/:path)?', (req, res) => {
@@ -188,6 +195,18 @@ app.post('/api/repos/:repositoryId', (req, res) => {
 
 function formatCode(string) {
   return string.trim().split('\n');
+}
+
+function formatCodeForFileTable(string) {
+  const arr = string.trim().split(',');
+  const obj = {};
+  arr.forEach((info) => {    
+    const idx = info.indexOf('-');
+    const key = info.slice(0, idx).trim();
+    const value = info.slice(idx + 1).trim();
+    obj[key] = value;
+  });
+  return obj;
 }
 
 function sendError404(res, paramType, paramValue) {
